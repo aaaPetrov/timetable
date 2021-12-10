@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.timetable.persistence.GradeCurriculumRepository">
+
+    <select id="getGradeCurricula" resultMap="GradeCurriculumResultMap">
+        Select s.id as subject_id, s.name as subject_name, s.room_type_needed as subject_room_type,
+        spw.id as subject_per_week_id, spw.class_id as subject_per_week_class_id,
+        spw.subject_id as subject_per_week_subject_id, spw.count as subject_per_week_count,
+        c.id as class.id, c.name as class_name
+        from subjects s inner join subject_per_week spw on
+        spw.subject_id = s.id inner join classes c on
+        spw.class_id = c.id
+    </select>
+
+    <resultMap id="GradeCurriculumResultMap" type="com.solvd.timetable.domain.GradeCurriculum" autoMapping="false">
+        <id property="id" column="subject_per_week_id"/>
+        <association property="grade" resultMap="com.solvd.timetable.persistence.GradeRepository.GradeResultMap"/>
+        <association property="countSubjects" resultMap="com.solvd.timetable.persistence.SubjectCountRepository.SubjectCountResultMap"/>
+    </resultMap>
+</mapper>
