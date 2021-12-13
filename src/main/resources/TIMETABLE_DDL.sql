@@ -1,7 +1,21 @@
 drop database if exists timetabledb;
 
 create database if not exists timetabledb;
+
 use timetabledb;
+
+
+drop table timetable;
+drop table subject_per_week;
+drop table teacher_subjects;
+drop table days;
+drop table lesson_numbers;
+drop table classrooms;
+drop table classes;
+drop table teachers;
+drop table subjects;
+
+
 
 create table if not exists days(
 id serial,
@@ -74,29 +88,29 @@ on delete cascade
 
 create table if not exists timetable (
 id serial,
-days_id  bigint unsigned not null,
-lesson_numbers_id  bigint unsigned not null,
-classes_id  bigint unsigned not null,
-subjects_id  bigint unsigned not null,
-classrooms_id  bigint unsigned not null,
-teachers_id  bigint unsigned not null,
+day_id  bigint unsigned not null,
+lesson_number_id  bigint unsigned not null,
+class_id  bigint unsigned not null,
+subject_id  bigint unsigned not null,
+classroom_id  bigint unsigned not null,
+teacher_id  bigint unsigned not null,
 primary key(id),
-constraint fk_timetable_days_id foreign key (days_id) references days(id) 
+constraint fk_timetable_day_id foreign key (day_id) references days(id) 
 on update no action 
 on delete cascade,
-constraint fk_timetable_lesson_numbers_id foreign key (lesson_numbers_id) references lesson_numbers(id) 
+constraint fk_timetable_lesson_number_id foreign key (lesson_number_id) references lesson_numbers(id) 
 on update no action 
 on delete cascade,
-constraint fk_timetable_classes_id foreign key (classes_id) references classes(id) 
+constraint fk_timetable_class_id foreign key (class_id) references classes(id) 
 on update no action 
 on delete cascade,
-constraint fk_timetable_lesson_subjects_id foreign key (subjects_id) references subjects(id) 
+constraint fk_timetable_lesson_subject_id foreign key (subject_id) references subjects(id) 
 on update no action 
 on delete cascade,
-constraint fk_timetable_classrooms_id foreign key (classrooms_id) references classrooms(id) 
+constraint fk_timetable_classroom_id foreign key (classroom_id) references classrooms(id) 
 on update no action 
 on delete cascade,
-constraint fk_timetable_lesson_teachers_id foreign key (teachers_id) references teachers(id) 
+constraint fk_timetable_lesson_teacher_id foreign key (teacher_id) references teachers(id) 
 on update no action 
 on delete cascade
 );
