@@ -5,7 +5,8 @@ public class Grade {
     private Long id;
     private String name;
 
-    public Grade() {}
+    public Grade() {
+    }
 
     public Long getId() {
         return id;

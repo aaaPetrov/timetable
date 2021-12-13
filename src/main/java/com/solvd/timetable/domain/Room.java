@@ -6,10 +6,11 @@ public class Room {
     private String number;
     private RoomType roomType;
 
-    public Room() {}
-
     public enum RoomType {
-        LAB, GYM, MAP, ALL;
+        LAB, GYM, MAP, ALL, COMPUTER
+    }
+
+    public Room() {
     }
 
     public Long getId() {

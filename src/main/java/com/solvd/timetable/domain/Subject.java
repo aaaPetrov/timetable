@@ -4,12 +4,13 @@ public class Subject {
 
     private Long id;
     private String name;
-    private roomTypeNeeded roomTypeNeeded;
+    private RoomTypeNeeded roomTypeNeeded;
 
-    public Subject() {}
+    public Subject() {
+    }
 
-    public enum roomTypeNeeded {
-        LAB, GYM, MAP, ALL
+    public enum RoomTypeNeeded {
+        LAB, GYM, MAP, ALL, COMPUTER
     }
 
     public Long getId() {
@@ -28,12 +29,11 @@ public class Subject {
         this.name = name;
     }
 
-    public Subject.roomTypeNeeded getRoomTypeNeeded() {
+    public RoomTypeNeeded getRoomTypeNeeded() {
         return roomTypeNeeded;
     }
 
-    public void setRoomTypeNeeded(Subject.roomTypeNeeded roomTypeNeeded) {
+    public void setRoomTypeNeeded(RoomTypeNeeded roomTypeNeeded) {
         this.roomTypeNeeded = roomTypeNeeded;
     }
-
 }

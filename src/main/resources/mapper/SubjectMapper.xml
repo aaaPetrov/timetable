@@ -9,6 +9,6 @@
     <resultMap id="SubjectResultMap" type="com.solvd.timetable.domain.Subject" autoMapping="false">
         <id property="id" column="subject_id"/>
         <result property="name" column="subject_name"/>
-        <result property="roomTypeNeeded" column="subject_room_type"/>
+        <result property="roomTypeNeeded" column="subject_room_type" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
     </resultMap>
 </mapper>

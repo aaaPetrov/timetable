@@ -6,7 +6,7 @@
         Select s.id as subject_id, s.name as subject_name, s.room_type_needed as subject_room_type,
         spw.id as subject_per_week_id, spw.class_id as subject_per_week_class_id,
         spw.subject_id as subject_per_week_subject_id, spw.count as subject_per_week_count,
-        c.id as class.id, c.name as class_name
+        c.id as class_id, c.name as class_name
         from subjects s inner join subject_per_week spw on
         spw.subject_id = s.id inner join classes c on
         spw.class_id = c.id
