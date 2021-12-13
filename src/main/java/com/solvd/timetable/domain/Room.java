@@ -9,7 +9,7 @@ public class Room {
     public Room() {}
 
     public enum RoomType {
-        LAB, GYM, MAP, ALL;
+        LAB, GYM, MAP, ALL, COMPUTER
     }
 
     public Long getId() {
