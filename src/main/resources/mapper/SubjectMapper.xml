@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.timetable.persistence.SubjectRepository">
+
+    <select id="getSubjects" resultMap="SubjectResultMap">
+        Select s.id as subject_id, s.name as subject_name, s.room_type_needed as subject_room_type from subjects s
+    </select>
+
+    <resultMap id="SubjectResultMap" type="com.solvd.timetable.domain.Subject" autoMapping="false">
+        <id property="id" column="subject_id"/>
+        <result property="name" column="subject_name"/>
+        <result property="roomTypeNeeded" column="subject_room_type" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+    </resultMap>
+</mapper>
