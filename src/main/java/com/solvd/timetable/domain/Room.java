@@ -10,9 +10,6 @@ public class Room {
         LAB, GYM, MAP, ALL, COMPUTER
     }
 
-    public Room() {
-    }
-
     public Long getId() {
         return id;
     }
