@@ -1,21 +1,18 @@
-drop database if exists timetabledb;
+drop database if exists school;
 
-create database if not exists timetabledb;
+create database if not exists school;
 
-use timetabledb;
+use school;
 
-
--- drop table timetable;
--- drop table subject_per_week;
--- drop table teacher_subjects;
--- drop table days;
--- drop table lesson_numbers;
--- drop table classrooms;
--- drop table classes;
--- drop table teachers;
--- drop table subjects;
-
-
+drop table timetable;
+drop table subject_per_week;
+drop table teacher_subjects;
+drop table days;
+drop table lesson_numbers;
+drop table classrooms;
+drop table classes;
+drop table teachers;
+drop table subjects;
 
 create table if not exists days(
 id serial,
@@ -114,6 +111,3 @@ constraint fk_timetable_lesson_teacher_id foreign key (teacher_id) references te
 on update no action 
 on delete cascade
 );
-
-
-
