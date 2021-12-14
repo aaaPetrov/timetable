@@ -5,15 +5,15 @@ create database if not exists timetabledb;
 use timetabledb;
 
 
-drop table timetable;
-drop table subject_per_week;
-drop table teacher_subjects;
-drop table days;
-drop table lesson_numbers;
-drop table classrooms;
-drop table classes;
-drop table teachers;
-drop table subjects;
+-- drop table timetable;
+-- drop table subject_per_week;
+-- drop table teacher_subjects;
+-- drop table days;
+-- drop table lesson_numbers;
+-- drop table classrooms;
+-- drop table classes;
+-- drop table teachers;
+-- drop table subjects;
 
 
 

@@ -1,5 +1,5 @@
 8 класс:
-русский язык 4                Russian Language
+русский язык 3               Russian Language
 русская литература 2          Russian Literature
 английский язык 3             English Language
 алгебра 3                     Algebra
@@ -17,7 +17,7 @@
 
 
 7 класс:
-русский язык 4              Russian Language
+русский язык 3              Russian Language
 русская литература 2        Russian Literature
 англиский язык 3            English Language
 алгебра 3                   Algebra
