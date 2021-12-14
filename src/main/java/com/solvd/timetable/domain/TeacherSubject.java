@@ -1,13 +1,12 @@
 package com.solvd.timetable.domain;
 
-import java.util.List;
-
 public class TeacherSubject {
 
     private Teacher teacher;
-    private List<Subject> subjects;
+    private Subject subject;
 
-    public TeacherSubject() {}
+    public TeacherSubject() {
+    }
 
     public Teacher getTeacher() {
         return teacher;
@@ -17,12 +16,12 @@ public class TeacherSubject {
         this.teacher = teacher;
     }
 
-    public List<Subject> getSubjects() {
-        return subjects;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setSubjects(List<Subject> subjects) {
-        this.subjects = subjects;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
 }

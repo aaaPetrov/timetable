@@ -8,7 +8,8 @@ public class GradeCurriculum {
     private Grade grade;
     private List<SubjectCount> countSubjects;
 
-    public GradeCurriculum() {}
+    public GradeCurriculum() {
+    }
 
     public Long getId() {
         return id;

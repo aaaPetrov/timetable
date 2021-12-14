@@ -14,7 +14,8 @@ public class LessonBlock {
     private Teacher teacher;
     private Room room;
 
-    public LessonBlock() {}
+    public LessonBlock() {
+    }
 
     public Day getDay() {
         return day;

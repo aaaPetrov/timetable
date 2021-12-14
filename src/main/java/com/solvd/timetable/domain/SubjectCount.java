@@ -5,7 +5,8 @@ public class SubjectCount {
     private Subject subject;
     private int count;
 
-    public SubjectCount() {}
+    public SubjectCount() {
+    }
 
     public Subject getSubject() {
         return subject;

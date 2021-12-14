@@ -3,7 +3,11 @@
 <mapper namespace="com.solvd.timetable.persistence.GradeRepository">
 
     <select id="getGrades" resultMap="GradeResultMap">
-        Select c.id as class_id, c.name as class_name from classes c
+        Select
+            c.id as class_id,
+            c.name as class_name
+        from
+            classes c
     </select>
 
     <resultMap id="GradeResultMap" type="com.solvd.timetable.domain.Grade" autoMapping="false">
