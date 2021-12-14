@@ -3,7 +3,12 @@
 <mapper namespace="com.solvd.timetable.persistence.RoomRepository">
 
     <select id="getRooms" resultMap="RoomResultMap">
-        Select cr.id as classroom_id, cr.number as classroom_number, cr.type as classroom_type from classrooms cr
+        Select
+            cr.id as classroom_id,
+            cr.number as classroom_number,
+            cr.type as classroom_type
+        from
+            classrooms cr
     </select>
 
     <resultMap id="RoomResultMap" type="com.solvd.timetable.domain.Room" autoMapping="false">
