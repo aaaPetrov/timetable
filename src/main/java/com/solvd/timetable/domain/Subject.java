@@ -14,7 +14,8 @@ public class Subject {
     private boolean sixthLessonFlag = true;
     private boolean seventhLessonFlag = true;
 
-    public Subject() {}
+    public Subject() {
+    }
 
     public enum roomTypeNeeded {
         LAB, GYM, MAP, ALL, COMPUTER
@@ -117,8 +118,8 @@ public class Subject {
             return false;
         }
 
-        Subject subject = (Subject)object;
-        return this.getId() == subject.getId() && this.getRoomTypeNeeded().name() == subject.getRoomTypeNeeded().name()
+        Subject subject = (Subject) object;
+        return this.getId().equals(subject.getId()) && this.getRoomTypeNeeded().name().equals(subject.getRoomTypeNeeded().name())
                 && (this.getName() != null && this.getName().equals(subject.getName()));
     }
 

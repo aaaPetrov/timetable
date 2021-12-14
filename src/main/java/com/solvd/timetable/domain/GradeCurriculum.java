@@ -7,7 +7,8 @@ public class GradeCurriculum {
     private Grade grade;
     private List<SubjectCount> countSubjects;
 
-    public GradeCurriculum() {}
+    public GradeCurriculum() {
+    }
 
     public Grade getGrade() {
         return grade;

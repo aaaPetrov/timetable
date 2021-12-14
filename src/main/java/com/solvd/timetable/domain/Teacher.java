@@ -8,8 +8,16 @@ public class Teacher {
     private String firstName;
     private String lastName;
     private List<Subject> subjects;
+    private boolean firstLessonFlag = true;
+    private boolean secondLessonFlag = true;
+    private boolean thirdLessonFlag = true;
+    private boolean fourthLessonFlag = true;
+    private boolean fifthLessonFlag = true;
+    private boolean sixthLessonFlag = true;
+    private boolean seventhLessonFlag = true;
 
-    public Teacher() {}
+    public Teacher() {
+    }
 
     public Long getId() {
         return id;
@@ -42,4 +50,61 @@ public class Teacher {
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
     }
+
+    public boolean isFirstLessonFlag() {
+        return firstLessonFlag;
+    }
+
+    public void setFirstLessonFlag(boolean firstLessonFlag) {
+        this.firstLessonFlag = firstLessonFlag;
+    }
+
+    public boolean isSecondLessonFlag() {
+        return secondLessonFlag;
+    }
+
+    public void setSecondLessonFlag(boolean secondLessonFlag) {
+        this.secondLessonFlag = secondLessonFlag;
+    }
+
+    public boolean isThirdLessonFlag() {
+        return thirdLessonFlag;
+    }
+
+    public void setThirdLessonFlag(boolean thirdLessonFlag) {
+        this.thirdLessonFlag = thirdLessonFlag;
+    }
+
+    public boolean isFourthLessonFlag() {
+        return fourthLessonFlag;
+    }
+
+    public void setFourthLessonFlag(boolean fourthLessonFlag) {
+        this.fourthLessonFlag = fourthLessonFlag;
+    }
+
+    public boolean isFifthLessonFlag() {
+        return fifthLessonFlag;
+    }
+
+    public void setFifthLessonFlag(boolean fifthLessonFlag) {
+        this.fifthLessonFlag = fifthLessonFlag;
+    }
+
+    public boolean isSixthLessonFlag() {
+        return sixthLessonFlag;
+    }
+
+    public void setSixthLessonFlag(boolean sixthLessonFlag) {
+        this.sixthLessonFlag = sixthLessonFlag;
+    }
+
+    public boolean isSeventhLessonFlag() {
+        return seventhLessonFlag;
+    }
+
+    public void setSeventhLessonFlag(boolean seventhLessonFlag) {
+        this.seventhLessonFlag = seventhLessonFlag;
+    }
+
 }

@@ -1,12 +1,9 @@
 package com.solvd.timetable;
 
+import com.solvd.timetable.algorithm.Algorithm;
 import com.solvd.timetable.domain.*;
-import com.solvd.timetable.domain.timetable.Day;
-import com.solvd.timetable.domain.timetable.LessonBlock;
-import com.solvd.timetable.domain.timetable.LessonNumber;
 import com.solvd.timetable.domain.timetable.TimeTable;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -14,263 +11,17 @@ import java.util.Scanner;
 public class MainClass {
 
     public static void main(String[] args) {
-        List<Day> days = Arrays.asList(Day.MONDAY, Day.TUESDAY, Day.WEDNESDAY, Day.THURSDAY, Day.FRIDAY, Day.SATURDAY);
-        List<LessonNumber> lessonNumbers = Arrays.asList(LessonNumber.FIRST, LessonNumber.SECOND, LessonNumber.THIRD,
-                LessonNumber.FOURTH, LessonNumber.FIFTH, LessonNumber.SIXTH, LessonNumber.SEVENTH);
         List<Grade> grades = createGrades();
         List<Room> rooms = createRooms();
         List<Subject> subjects = createSubject();
         List<Teacher> teachers = createTeachers(subjects);
         List<GradeCurriculum> gradeCurricula = createGradeCurricula(grades, subjects);
 
-
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the number of days in the school week(5 or 6): ");
-
         final int daysInWeek = scanner.nextInt();
-        final int maxLessonCount = LessonNumber.values().length;
-        final int gradesCount = grades.size();
-
-        List<List<Integer>> lessonsPerDayAllClasses = new ArrayList<>();
-        for (GradeCurriculum gradeCurriculum : gradeCurricula) {
-            lessonsPerDayAllClasses.add(randomLessonsPerDayInWeek(gradeCurriculum.getCountSubjects().stream().
-                    mapToInt(subjectCount -> subjectCount.getCount()).sum(), daysInWeek));
-        }
-
-        TimeTable timeTable = TimeTable.getInstance(daysInWeek * maxLessonCount * gradesCount);
-
-        final int MONDAY_INDEX = 0 * gradesCount * maxLessonCount;
-        final int TUESDAY_INDEX = 1 * gradesCount * maxLessonCount;
-        final int WEDNESDAY_INDEX = 2 * gradesCount * maxLessonCount;
-        final int THURSDAY_INDEX = 3 * gradesCount * maxLessonCount;
-        final int FRIDAY_INDEX = 4 * gradesCount * maxLessonCount;
-        final int SATURDAY_INDEX = 5 * gradesCount * maxLessonCount;
-
-        final int firstGrade = 0 * maxLessonCount;
-        final int secondGrade = 1 * maxLessonCount;
-        final int thirdGrade = 2 * maxLessonCount;
-        final int fourthGrade = 3 * maxLessonCount;
-
-        final int FIRST_LESSON = 0;
-        final int SECOND_LESSON = 1;
-        final int THIRD_LESSON = 2;
-        final int FOURTH_LESSON = 3;
-        final int FIFTH_LESSON = 4;
-        final int SIXTH_LESSON = 5;
-        final int SEVENTH_LESSON = 6;
-
-    m2:    while (true) {
-
-            timeTable.getLessonBlocks().forEach(lessonBlock -> lessonBlock = null);
-
-            int grade = 0;
-            for (List<Integer> lessonsPerDayInClass : lessonsPerDayAllClasses) {
-                int day = 0;
-                for (int lessonInThatDay : lessonsPerDayInClass) {
-                    for (int lesson = 0; lesson < lessonInThatDay; lesson++) {
-                        timeTable.getLessonBlocks().set(day * gradesCount * maxLessonCount + grade * maxLessonCount + lesson, new LessonBlock());
-                        System.out.print("1 ");
-                    }
-                    System.out.println();
-                    day++;
-                }
-                System.out.println("-----");
-                grade++;
-            }
-
-            List<LessonBlock> table = timeTable.getLessonBlocks();
-            gradeCurricula = createGradeCurricula(grades, subjects);
-
-            for (int i = 0; i < daysInWeek; i++) {
-                int day = i * gradesCount * maxLessonCount;
-                for (int j = 0; j < gradesCount; j++) {
-                    grade = j * maxLessonCount;
-                    List<SubjectCount> gradeCurriculum = gradeCurricula.get(j).getCountSubjects();
-                    Subject subject = null;
-                    for (int lesson = 0; lesson < maxLessonCount; lesson++) {
-                        if (table.get(day + grade + lesson) != null) {
-                            subject = randomSubject(gradeCurriculum, lesson);
-                            if (subject == null) {
-                                System.out.println("EXIT");
-                                continue m2;
-                            }
-                            LessonBlock lessonBlock = table.get(day + grade + lesson);
-                            lessonBlock.setSubject(subject);
-                            System.out.print(lesson + ". " + subject.getName() + " ");
-                        }
-                    }
-                    gradeCurriculum.forEach(subjectCount -> subjectCount.getSubject().setGradeFlag(true));
-                    System.out.println("\n");
-                }
-
-                gradeCurricula.forEach(gradeCurriculum -> gradeCurriculum.getCountSubjects().forEach(subjectCount -> {
-                    subjectCount.getSubject().setFirstLessonFlag(true);
-                    subjectCount.getSubject().setSecondLessonFlag(true);
-                    subjectCount.getSubject().setThirdLessonFlag(true);
-                    subjectCount.getSubject().setFourthLessonFlag(true);
-                    subjectCount.getSubject().setFifthLessonFlag(true);
-                    subjectCount.getSubject().setSixthLessonFlag(true);
-                    subjectCount.getSubject().setSeventhLessonFlag(true);
-                }));
-                System.out.println("---------");
-
-
-
-            }
-            int sum = gradeCurricula.stream().map(gradeCurriculum -> gradeCurriculum.getCountSubjects())
-                .map(subjectCounts -> subjectCounts.stream().mapToInt(subjectCount -> subjectCount.getCount()).sum()).mapToInt(s -> s).sum();
-            if(sum == 0) {
-                break;
-            }
-        }
-
-    }
-
-    private static Subject randomSubject(List<SubjectCount> subjectCounts, int lesson) {
-        int size = subjectCounts.size();
-        Subject resultSubject = null;
-        int index;
-        switch (lesson) {
-            case 0:
-                index = 0;
-                while (index < 10000) {
-
-                    int randomInt = (int) (Math.random() * size);
-                    SubjectCount subjectCount = subjectCounts.get(randomInt);
-
-                    if (subjectCount.getCount() != 0 && subjectCount.getSubject().isGradeFlag() && subjectCount.getSubject().isFirstLessonFlag()) {
-                        resultSubject = subjectCount.getSubject();
-                        subjectCount.setCount(subjectCount.getCount() - 1);
-                        subjectCount.getSubject().setGradeFlag(false);
-                        subjectCount.getSubject().setFirstLessonFlag(false);
-                        break;
-                    }
-                    index++;
-                }
-                break;
-            case 1:
-                index = 0;
-                while (index < 10000) {
-                    int randomInt = (int) (Math.random() * size);
-                    SubjectCount subjectCount = subjectCounts.get(randomInt);
-
-                    if (subjectCount.getCount() != 0 && subjectCount.getSubject().isGradeFlag() && subjectCount.getSubject().isSecondLessonFlag()) {
-                        resultSubject = subjectCount.getSubject();
-                        subjectCount.setCount(subjectCount.getCount() - 1);
-                        subjectCount.getSubject().setGradeFlag(false);
-                        subjectCount.getSubject().setSecondLessonFlag(false);
-                        break;
-                    }
-                    index++;
-                }
-                break;
-            case 2:
-                index = 0;
-                while (index < 10000) {
-                    int randomInt = (int) (Math.random() * size);
-                    SubjectCount subjectCount = subjectCounts.get(randomInt);
-
-                    if (subjectCount.getCount() != 0 && subjectCount.getSubject().isGradeFlag() && subjectCount.getSubject().isThirdLessonFlag()) {
-                        resultSubject = subjectCount.getSubject();
-                        subjectCount.setCount(subjectCount.getCount() - 1);
-                        subjectCount.getSubject().setGradeFlag(false);
-                        subjectCount.getSubject().setThirdLessonFlag(false);
-                        break;
-                    }
-                    index++;
-                }
-                break;
-            case 3:
-                index = 0;
-                while (index < 10000) {
-                    int randomInt = (int) (Math.random() * size);
-                    SubjectCount subjectCount = subjectCounts.get(randomInt);
-
-                    if (subjectCount.getCount() != 0 && subjectCount.getSubject().isGradeFlag() && subjectCount.getSubject().isFourthLessonFlag()) {
-                        resultSubject = subjectCount.getSubject();
-                        subjectCount.setCount(subjectCount.getCount() - 1);
-                        /*subjectCount.getSubject().setGradeFlag(false);*/
-                        subjectCount.getSubject().setFourthLessonFlag(false);
-                        break;
-                    }
-                    index++;
-                }
-                break;
-            case 4:
-                index = 0;
-                while (index < 10000) {
-                    int randomInt = (int) (Math.random() * size);
-                    SubjectCount subjectCount = subjectCounts.get(randomInt);
-
-                    if (subjectCount.getCount() != 0 && subjectCount.getSubject().isGradeFlag() && subjectCount.getSubject().isFifthLessonFlag()) {
-                        resultSubject = subjectCount.getSubject();
-                        subjectCount.setCount(subjectCount.getCount() - 1);
-                        subjectCount.getSubject().setGradeFlag(false);
-                        subjectCount.getSubject().setFifthLessonFlag(false);
-                        break;
-                    }
-                    index++;
-                }
-                break;
-            case 5:
-                index = 0;
-                while (index < 10000) {
-                    int randomInt = (int) (Math.random() * size);
-                    SubjectCount subjectCount = subjectCounts.get(randomInt);
-
-                    if (subjectCount.getCount() != 0 && subjectCount.getSubject().isGradeFlag() && subjectCount.getSubject().isSixthLessonFlag()) {
-                        resultSubject = subjectCount.getSubject();
-                        subjectCount.setCount(subjectCount.getCount() - 1);
-                        subjectCount.getSubject().setGradeFlag(false);
-                        subjectCount.getSubject().setSixthLessonFlag(false);
-                        break;
-                    }
-                    index++;
-                }
-                break;
-            case 6:
-                index = 0;
-                while (index < 10000) {
-                    int randomInt = (int) (Math.random() * size);
-                    SubjectCount subjectCount = subjectCounts.get(randomInt);
-
-                    if (subjectCount.getCount() != 0 && subjectCount.getSubject().isGradeFlag() && subjectCount.getSubject().isSeventhLessonFlag()) {
-                        resultSubject = subjectCount.getSubject();
-                        subjectCount.setCount(subjectCount.getCount() - 1);
-                        subjectCount.getSubject().setGradeFlag(false);
-                        subjectCount.getSubject().setSeventhLessonFlag(false);
-                        break;
-                    }
-                    index++;
-                }
-                break;
-        }
-        return resultSubject;
-    }
-
-    private static List<Integer> randomLessonsPerDayInWeek(int lessonsPerWeek, int daysInWeek) {
-        int avg = lessonsPerWeek / daysInWeek;
-        List<Integer> leesonsPerDay = new ArrayList<>();
-        for (int i = 0; i < daysInWeek; i++) {
-            leesonsPerDay.add((int) ((Math.random() * ((avg + 1) - (avg - 1) + 1)) + (avg - 1)));
-        }
-        Integer sum = leesonsPerDay.stream().reduce((integer, integer2) -> integer += integer2).get();
-        if (sum > lessonsPerWeek) {
-            int difference = sum - lessonsPerWeek;
-            for (int i = 0; i < difference; i++) {
-                int max = leesonsPerDay.stream().max((x, y) -> Integer.compare(x, y)).get();
-                int index = leesonsPerDay.indexOf(max);
-                leesonsPerDay.set(index, leesonsPerDay.get(index) - 1);
-            }
-        } else if (sum < lessonsPerWeek) {
-            int difference = lessonsPerWeek - sum;
-            for (int i = 0; i < difference; i++) {
-                int min = leesonsPerDay.stream().min((x, y) -> Integer.compare(x, y)).get();
-                int index = leesonsPerDay.indexOf(min);
-                leesonsPerDay.set(index, leesonsPerDay.get(index) + 1);
-            }
-        }
-        return leesonsPerDay;
+        Algorithm algorithm = new Algorithm(daysInWeek, grades, teachers, rooms, gradeCurricula);
+        TimeTable timeTable = algorithm.createTimeTable();
     }
 
     private static List<Grade> createGrades() {
@@ -487,7 +238,7 @@ public class MainClass {
         subjectCount2.setCount(2);
         SubjectCount subjectCount3 = new SubjectCount();
         subjectCount3.setSubject(subjects.stream().filter(subject -> subject.getName() == "Russian Language").findFirst().get());
-        subjectCount3.setCount(4);
+        subjectCount3.setCount(3);
         SubjectCount subjectCount4 = new SubjectCount();
         subjectCount4.setSubject(subjects.stream().filter(subject -> subject.getName() == "Russian Literature").findFirst().get());
         subjectCount4.setCount(2);
@@ -535,7 +286,7 @@ public class MainClass {
         subjectCount2.setCount(2);
         SubjectCount subjectCount3 = new SubjectCount();
         subjectCount3.setSubject(subjects.stream().filter(subject -> subject.getName() == "Russian Language").findFirst().get());
-        subjectCount3.setCount(4);
+        subjectCount3.setCount(3);
         SubjectCount subjectCount4 = new SubjectCount();
         subjectCount4.setSubject(subjects.stream().filter(subject -> subject.getName() == "Russian Literature").findFirst().get());
         subjectCount4.setCount(2);
