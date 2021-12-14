@@ -15,10 +15,8 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mapper/SubjectMapper.xml"/>
         <mapper resource="mapper/GradeMapper.xml"/>
         <mapper resource="mapper/RoomMapper.xml"/>
-        <mapper resource="mapper/SubjectCountMapper.xml"/>
         <mapper resource="mapper/TeacherMapper.xml"/>
         <mapper resource="mapper/GradeCurriculumMapper.xml"/>
     </mappers>

@@ -9,22 +9,26 @@ import java.io.InputStream;
 
 public class MybatisSessionHolder {
 
-    private static final String CONFIG_FILE_NAME = "mybatisConfig.xml";
-    private static final SqlSessionFactory SQL_SESSION_FACTORY = buildSessionFactory();
+    private static final String CONFIG_PATH = "mybatis-config.xml";
+    private static final SqlSessionFactory SQL_SESSION_FACTORY;
 
-    private static SqlSessionFactory buildSessionFactory() {
+    static {
+        SQL_SESSION_FACTORY = createSessionFactory();
+    }
+
+    private static SqlSessionFactory createSessionFactory() {
         InputStream inputStream;
         try {
-            inputStream = Resources.getResourceAsStream(CONFIG_FILE_NAME);
-        } catch (IOException e) {
-            throw new RuntimeException("Mybatis session holder exception", e);
+            inputStream = Resources.getResourceAsStream(CONFIG_PATH);
+        } catch (IOException exception) {
+            throw new RuntimeException("Cant load mybatis config.", exception);
         }
-        SqlSessionFactory sqlSessionFactory =
-                new SqlSessionFactoryBuilder().build(inputStream);
-        return sqlSessionFactory;
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        return builder.build(inputStream);
     }
 
     public static SqlSessionFactory getSqlSessionFactory() {
         return SQL_SESSION_FACTORY;
     }
+
 }

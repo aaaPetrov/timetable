@@ -4,7 +4,6 @@ public class Subject {
 
     private Long id;
     private String name;
-
     private RoomTypeNeeded roomTypeNeeded;
     private boolean gradeFlag = true;
     private boolean firstLessonFlag = true;
