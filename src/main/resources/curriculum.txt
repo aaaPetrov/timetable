@@ -1,33 +1,35 @@
-8 класс:
-русский язык 3               Russian Language
-русская литература 2          Russian Literature
-английский язык 3             English Language
-алгебра 3                     Algebra
-геометрия 2                   Geometry
-информатика 2                 Informatics
-химия 2                       Chemistry
-биология 2                    Biology
-физика 2                      Physics
-география 2                   Geography
-история 2                     History
-обществознание 1              Society Science
-музыка 1                      Music
-физическая культура 3         Physical Training
-ОБЖ 1                         O.B.G.
+8 grade:
+
+Russian Language 3
+Russian Literature 2
+English Language 3
+Algebra 3
+Geometry 2
+Informatics 2
+Chemistry 2
+Biology 2
+Physics  2
+Geography 2
+History 2
+Society Science 1
+Music 1
+Physical Training 3
+O.B.G. 1 
 
 
-7 класс:
-русский язык 3              Russian Language
-русская литература 2        Russian Literature
-англиский язык 3            English Language
-алгебра 3                   Algebra
-геометрия 2                 Geometry
-информатика 2               Informatics
-биология 2                  Biology
-физика 2                    Physics
-география 2                 Geography
-история 2                   History
-обществознание 1            Society Knowledge
-музыка 1                    Music
-физическая культура 3       Physical Training
-изобразительное искусство 1 Art
+7 grade:
+
+Russian Language 3
+Russian Literature 2
+English Language 3
+Algebra 3
+Geometry 2
+Informatics 2
+Biology 2
+Physics  2
+Geography 2
+History 2
+Society Science 1
+Music 1
+Physical Training 3
+Art 1
