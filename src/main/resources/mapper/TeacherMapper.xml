@@ -22,7 +22,7 @@
         <id property="id" column="teacher_id"/>
         <result property="firstName" column="teacher_first_name"/>
         <result property="lastName" column="teacher_last_name"/>
-        <association property="subjects" resultMap="SubjectResultMap"/>
+        <collection property="subjects" resultMap="SubjectResultMap"/>
     </resultMap>
 
     <resultMap id="SubjectResultMap" type="com.solvd.timetable.domain.Subject" autoMapping="false">

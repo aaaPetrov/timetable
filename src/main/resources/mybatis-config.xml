@@ -19,5 +19,7 @@
         <mapper resource="mapper/RoomMapper.xml"/>
         <mapper resource="mapper/TeacherMapper.xml"/>
         <mapper resource="mapper/GradeCurriculumMapper.xml"/>
+        <mapper resource="mapper/TimetableMapper.xml"/>
+        <mapper resource="mapper/LessonBlockMapper.xml"/>
     </mappers>
 </configuration>

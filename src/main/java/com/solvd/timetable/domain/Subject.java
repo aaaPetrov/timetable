@@ -18,7 +18,7 @@ public class Subject {
     }
 
     public enum RoomTypeNeeded {
-        LAB, GYM, MAP, ALL, COMPUTER
+        MAP, LAB, GYM, ALL, COMPUTER
     }
 
     public Long getId() {
