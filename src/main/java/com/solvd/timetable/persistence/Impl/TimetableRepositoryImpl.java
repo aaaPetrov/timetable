@@ -5,6 +5,8 @@ import com.solvd.timetable.persistence.MybatisSessionHolder;
 import com.solvd.timetable.persistence.TimetableRepository;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.List;
+
 
 public class TimetableRepositoryImpl implements TimetableRepository {
 
@@ -15,4 +17,15 @@ public class TimetableRepositoryImpl implements TimetableRepository {
             timetableRepository.createTimetable(lessonBlock);
         }
     }
+
+    @Override
+    public List<LessonBlock> getLessonBlocks() {
+        List<LessonBlock> lessonBlocks;
+        try (SqlSession session = MybatisSessionHolder.getSqlSessionFactory().openSession(true)) {
+            TimetableRepository timetableRepository = session.getMapper(TimetableRepository.class);
+            lessonBlocks = timetableRepository.getLessonBlocks();
+        }
+        return lessonBlocks;
+    }
+
 }

@@ -7,4 +7,7 @@ import java.util.List;
 public interface TimetableRepository {
 
     void createTimetable(LessonBlock lessonBlocks);
+
+    List<LessonBlock> getLessonBlocks();
+
 }
