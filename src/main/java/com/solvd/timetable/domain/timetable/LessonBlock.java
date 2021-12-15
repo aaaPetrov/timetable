@@ -7,14 +7,24 @@ import com.solvd.timetable.domain.Teacher;
 
 public class LessonBlock {
 
+    private Long id;
     private Day day;
     private LessonNumber lessonNumber;
     private Grade grade;
+
     private Subject subject;
     private Teacher teacher;
     private Room room;
 
     public LessonBlock() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Day getDay() {

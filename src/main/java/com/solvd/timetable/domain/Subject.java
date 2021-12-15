@@ -4,7 +4,7 @@ public class Subject {
 
     private Long id;
     private String name;
-    private RoomTypeNeeded roomTypeNeeded;
+    private RoomType roomTypeNeeded;
     private boolean gradeFlag = true;
     private boolean firstLessonFlag = true;
     private boolean secondLessonFlag = true;
@@ -15,10 +15,6 @@ public class Subject {
     private boolean seventhLessonFlag = true;
 
     public Subject() {
-    }
-
-    public enum RoomTypeNeeded {
-        MAP, LAB, GYM, ALL, COMPUTER
     }
 
     public Long getId() {
@@ -37,11 +33,11 @@ public class Subject {
         this.name = name;
     }
 
-    public RoomTypeNeeded getRoomTypeNeeded() {
+    public RoomType getRoomTypeNeeded() {
         return roomTypeNeeded;
     }
 
-    public void setRoomTypeNeeded(RoomTypeNeeded roomTypeNeeded) {
+    public void setRoomTypeNeeded(RoomType roomTypeNeeded) {
         this.roomTypeNeeded = roomTypeNeeded;
     }
 

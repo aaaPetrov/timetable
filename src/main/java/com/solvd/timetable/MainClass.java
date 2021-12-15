@@ -24,10 +24,13 @@ public class MainClass {
         TimetableRepository timetableRepository = new TimetableRepositoryImpl();
 
         for(LessonBlock lessonBlock : timeTable.getLessonBlocks()) {
-            timetableRepository.createTimetable(lessonBlock);
+            if(lessonBlock != null) {
+                timetableRepository.createTimetable(lessonBlock);
+            }
         }
 
         List<LessonBlock> lessonBlocks = lessonBlockRepository.getLessonBlocks();
+        System.out.println();
     }
 
 }
