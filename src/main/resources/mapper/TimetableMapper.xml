@@ -39,6 +39,10 @@
             subjects s on tt.subject_id = s.id
     </select>
 
+    <delete id="deleteTimetable">
+        Delete from timetable where id > 0
+    </delete>
+
     <resultMap id="LessonBlockResultMap" type="com.solvd.timetable.domain.timetable.LessonBlock" autoMapping="false">
         <id property="id" column="timetable_id"/>
         <result property="day" column="day_name" javaType="com.solvd.timetable.domain.timetable.Day"/>

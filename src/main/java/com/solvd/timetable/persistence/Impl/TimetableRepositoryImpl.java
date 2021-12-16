@@ -28,4 +28,12 @@ public class TimetableRepositoryImpl implements TimetableRepository {
         return lessonBlocks;
     }
 
+    @Override
+    public void deleteTimetable() {
+        try (SqlSession session = MybatisSessionHolder.getSqlSessionFactory().openSession(true)) {
+            TimetableRepository timetableRepository = session.getMapper(TimetableRepository.class);
+            timetableRepository.deleteTimetable();
+        }
+    }
+
 }
