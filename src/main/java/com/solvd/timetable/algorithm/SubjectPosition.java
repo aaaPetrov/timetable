@@ -1,6 +1,7 @@
 package com.solvd.timetable.algorithm;
 
 import com.solvd.timetable.domain.Subject;
+import com.solvd.timetable.domain.timetable.LessonNumber;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class SubjectPosition {
 
     private Long id;
     private Subject subject;
-    private List<Integer> positions;
+    private List<LessonNumber> positions;
 
     public SubjectPosition() {}
 
@@ -28,11 +29,11 @@ public class SubjectPosition {
         this.subject = subject;
     }
 
-    public List<Integer> getPositions() {
+    public List<LessonNumber> getPositions() {
         return positions;
     }
 
-    public void setPositions(List<Integer> positions) {
+    public void setPositions(List<LessonNumber> positions) {
         this.positions = positions;
     }
 
