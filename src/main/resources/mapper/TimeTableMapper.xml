@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.solvd.timetable.persistence.TimetableRepository">
+<mapper namespace="com.solvd.timetable.persistence.TimeTableRepository">
 
-    <insert id="createTimetable" keyColumn="id" useGeneratedKeys="true">
+    <insert id="createTimeTable" keyColumn="id" useGeneratedKeys="true">
         Insert into timetable(day_id, lesson_number_id, class_id, subject_id, classroom_id, teacher_id)
         values (#{day.id}, #{lessonNumber.id}, #{grade.id}, #{subject.id}, #{room.id}, #{teacher.id})
     </insert>
@@ -37,6 +37,8 @@
             teachers t on tt.teacher_id = t.id
         inner join
             subjects s on tt.subject_id = s.id
+        order by
+            tt.id
     </select>
 
     <resultMap id="LessonBlockResultMap" type="com.solvd.timetable.domain.timetable.LessonBlock" autoMapping="false">

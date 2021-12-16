@@ -51,6 +51,41 @@ public class Algorithm {
         this.gradesCount = grades.size();
     }
 
+    public TimeTable formatTimeTable(TimeTable timeTable) {
+        List<LessonBlock> lessonBlocks = timeTable.getLessonBlocks();
+
+        dayLoop:
+        for(int i = 0; i < this.daysInWeek; i++) {
+            int day = i * this.gradesCount * this.maxLessonCount;
+
+            gradeLoop:
+            for(int j = 0; j < this.gradesCount; j++) {
+                int grade = j * this.maxLessonCount;
+
+                for(int lesson = 0; lesson < this.maxLessonCount; lesson++) {
+                    int index = day + grade + lesson;
+                    if(index < lessonBlocks.size() - 1) {
+                        if(!lessonBlocks.get(index).getGrade().getName().equals(lessonBlocks.get(index + 1).getGrade().getName())) {
+                            for(int x = 1; x < this.maxLessonCount - lesson; x++) {
+                                LessonBlock lessonBlock = null;
+                                lessonBlocks.add(index + x, lessonBlock);
+                            }
+                            continue gradeLoop;
+                        }
+                    } else {
+                        for(int x = 1; x < this.maxLessonCount - lesson; x++) {
+                            LessonBlock lessonBlock = null;
+                            lessonBlocks.add(index + x, lessonBlock);
+                        }
+                        break dayLoop;
+                    }
+                }
+            }
+        }
+
+        timeTable.setLessonBlocks(lessonBlocks);
+        return timeTable;
+    }
     public TimeTable createTimeTable() {
         List<List<Integer>> lessonsPerDay = setAmountOfLessonsPerDay(this.daysInWeek, this.gradeCurricula);
         TimeTable timeTable = new TimeTable(this.daysInWeek * this.maxLessonCount * this.gradesCount);
@@ -544,5 +579,17 @@ public class Algorithm {
             newSubjectCounts.add(newSubjectCount);
         }
         return newSubjectCounts;
+    }
+
+    public int getDaysInWeek() {
+        return daysInWeek;
+    }
+
+    public int getMaxLessonCount() {
+        return maxLessonCount;
+    }
+
+    public int getGradesCount() {
+        return gradesCount;
     }
 }

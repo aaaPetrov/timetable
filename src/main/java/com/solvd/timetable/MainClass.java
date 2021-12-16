@@ -2,8 +2,8 @@ package com.solvd.timetable;
 
 import com.solvd.timetable.algorithm.Algorithm;
 import com.solvd.timetable.domain.timetable.TimeTable;
-import com.solvd.timetable.service.TimetableService;
-import com.solvd.timetable.service.impl.TimetableServiceImpl;
+import com.solvd.timetable.service.TimeTableService;
+import com.solvd.timetable.service.impl.TimeTableServiceImpl;
 import java.util.Scanner;
 
 public class MainClass {
@@ -13,13 +13,20 @@ public class MainClass {
         System.out.print("Enter the number of days in the school week(5 or 6): ");
         final int daysInWeek = scanner.nextInt();
 
+        //Алгоритм и его запуск ( createTimeTable )
+        //Результат - созданый объект timeTable с нашим расписанием.
         Algorithm algorithm = new Algorithm(daysInWeek);
         TimeTable timeTable = algorithm.createTimeTable();
 
-        TimetableService timetableService = new TimetableServiceImpl();
-        timetableService.createTimetable(timeTable);
+        //Функция createTimeTable() делает insert в базуданных, в таблицу timetable наще расписание.
+        TimeTableService timeTableService = new TimeTableServiceImpl();
+        timeTableService.createTimeTable(timeTable);
 
-        TimeTable newTimeTable = timetableService.getTimeTable();
+        //Функция getTimeTable возвращает из базы данных расписание внутри объекта TimeTable.
+        TimeTable newTimeTable = timeTableService.getTimeTable();
+
+        //Функция formatTimeTable приводит наше расписание в удобный для вывода вид.
+        newTimeTable = algorithm.formatTimeTable(newTimeTable);
         System.out.println();
     }
 

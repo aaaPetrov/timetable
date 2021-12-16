@@ -4,9 +4,9 @@ import com.solvd.timetable.domain.timetable.LessonBlock;
 
 import java.util.List;
 
-public interface TimetableRepository {
+public interface TimeTableRepository {
 
-    void createTimetable(LessonBlock lessonBlocks);
+    void createTimeTable(LessonBlock lessonBlocks);
 
     List<LessonBlock> getLessonBlocks();
 

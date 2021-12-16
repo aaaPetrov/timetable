@@ -2,19 +2,19 @@ package com.solvd.timetable.persistence.Impl;
 
 import com.solvd.timetable.domain.timetable.LessonBlock;
 import com.solvd.timetable.persistence.MybatisSessionHolder;
-import com.solvd.timetable.persistence.TimetableRepository;
+import com.solvd.timetable.persistence.TimeTableRepository;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
 
-public class TimetableRepositoryImpl implements TimetableRepository {
+public class TimeTableRepositoryImpl implements TimeTableRepository {
 
     @Override
-    public void createTimetable(LessonBlock lessonBlock) {
+    public void createTimeTable(LessonBlock lessonBlock) {
         try (SqlSession session = MybatisSessionHolder.getSqlSessionFactory().openSession(true)) {
-            TimetableRepository timetableRepository = session.getMapper(TimetableRepository.class);
-            timetableRepository.createTimetable(lessonBlock);
+            TimeTableRepository timeTableRepository = session.getMapper(TimeTableRepository.class);
+            timeTableRepository.createTimeTable(lessonBlock);
         }
     }
 
@@ -22,8 +22,8 @@ public class TimetableRepositoryImpl implements TimetableRepository {
     public List<LessonBlock> getLessonBlocks() {
         List<LessonBlock> lessonBlocks;
         try (SqlSession session = MybatisSessionHolder.getSqlSessionFactory().openSession(true)) {
-            TimetableRepository timetableRepository = session.getMapper(TimetableRepository.class);
-            lessonBlocks = timetableRepository.getLessonBlocks();
+            TimeTableRepository timeTableRepository = session.getMapper(TimeTableRepository.class);
+            lessonBlocks = timeTableRepository.getLessonBlocks();
         }
         return lessonBlocks;
     }
