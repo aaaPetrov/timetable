@@ -7,6 +7,8 @@ public class TimeTable {
 
     private List<LessonBlock> lessonBlocks;
 
+    public TimeTable() {}
+
     public TimeTable(int size) {
         this.lessonBlocks = Arrays.asList(new LessonBlock[size]);
     }

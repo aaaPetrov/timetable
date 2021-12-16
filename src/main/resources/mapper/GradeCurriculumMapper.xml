@@ -21,13 +21,13 @@
             classes c on spw.class_id = c.id
     </select>
 
-    <resultMap id="GradeCurriculumResultMap" type="com.solvd.timetable.domain.GradeCurriculum" autoMapping="false">
+    <resultMap id="GradeCurriculumResultMap" type="com.solvd.timetable.domain.curriculum.GradeCurriculum" autoMapping="false">
         <id property="id" column="subject_per_week_class_id"/>
         <association property="grade" resultMap="com.solvd.timetable.persistence.GradeRepository.GradeResultMap"/>
         <collection property="countSubjects" resultMap="SubjectCountResultMap"/>
     </resultMap>
 
-    <resultMap id="SubjectCountResultMap" type="com.solvd.timetable.domain.SubjectCount" autoMapping="false">
+    <resultMap id="SubjectCountResultMap" type="com.solvd.timetable.domain.curriculum.SubjectCount" autoMapping="false">
         <result property="subject.id" column="subject_id"/>
         <result property="subject.name" column="subject_name"/>
         <result property="subject.roomTypeNeeded" column="subject_room_type"/>

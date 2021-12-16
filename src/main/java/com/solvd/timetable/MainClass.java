@@ -1,31 +1,34 @@
 package com.solvd.timetable;
 
 import com.solvd.timetable.algorithm.Algorithm;
-import com.solvd.timetable.domain.*;
 import com.solvd.timetable.domain.timetable.TimeTable;
-import com.solvd.timetable.service.*;
-import com.solvd.timetable.service.impl.*;
-
-import java.util.List;
+import com.solvd.timetable.service.TimeTableService;
+import com.solvd.timetable.service.impl.TimeTableServiceImpl;
 import java.util.Scanner;
 
 public class MainClass {
 
     public static void main(String[] args) {
-        GradeService gradeService = new GradeServiceImpl();
-        List<Grade> grades = gradeService.getAll();
-        RoomService roomService = new RoomServiceImpl();
-        List<Room> rooms = roomService.getAll();
-        TeacherService teacherService = new TeacherServiceImpl();
-        List<Teacher> teachers = teacherService.getAll();
-        GradeCurriculumService gradeCurriculumService = new GradeCurriculumServiceImpl();
-        List<GradeCurriculum> gradeCurricula = gradeCurriculumService.getAll();
-
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the number of days in the school week(5 or 6): ");
         final int daysInWeek = scanner.nextInt();
-        Algorithm algorithm = new Algorithm(daysInWeek, grades, teachers, rooms, gradeCurricula);
+
+        //Алгоритм и его запуск ( createTimeTable )
+        //Результат - созданый объект timeTable с нашим расписанием.
+        Algorithm algorithm = new Algorithm(daysInWeek);
         TimeTable timeTable = algorithm.createTimeTable();
+
+        //Функция createTimeTable() удаляет все данные из таблицы timetable в БД
+        //А после делает insert в БД, в таблицу timetable наще расписание.
+        TimeTableService timeTableService = new TimeTableServiceImpl();
+        timeTableService.createTimeTable(timeTable);
+
+        //Функция getTimeTable возвращает из базы данных расписание внутри объекта TimeTable.
+        TimeTable newTimeTable = timeTableService.getTimeTable();
+
+        //Функция formatTimeTable приводит наше расписание в удобный для вывода вид.
+        newTimeTable = algorithm.formatTimeTable(newTimeTable);
+        System.out.println();
     }
 
 }

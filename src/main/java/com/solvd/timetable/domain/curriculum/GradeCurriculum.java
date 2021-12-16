@@ -1,4 +1,6 @@
-package com.solvd.timetable.domain;
+package com.solvd.timetable.domain.curriculum;
+
+import com.solvd.timetable.domain.Grade;
 
 import java.util.List;
 

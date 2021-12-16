@@ -1,4 +1,7 @@
-package com.solvd.timetable.domain;
+package com.solvd.timetable.algorithm;
+
+import com.solvd.timetable.domain.Subject;
+import com.solvd.timetable.domain.Teacher;
 
 public class TeacherSubject {
 

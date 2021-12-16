@@ -16,10 +16,6 @@ public class Room {
     public Room() {
     }
 
-    public enum RoomType {
-        LAB, GYM, MAP, ALL, COMPUTER
-    }
-
     public Long getId() {
         return id;
     }

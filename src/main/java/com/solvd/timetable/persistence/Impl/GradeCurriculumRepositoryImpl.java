@@ -1,6 +1,6 @@
 package com.solvd.timetable.persistence.Impl;
 
-import com.solvd.timetable.domain.GradeCurriculum;
+import com.solvd.timetable.domain.curriculum.GradeCurriculum;
 import com.solvd.timetable.persistence.GradeCurriculumRepository;
 import com.solvd.timetable.persistence.MybatisSessionHolder;
 import org.apache.ibatis.session.SqlSession;
