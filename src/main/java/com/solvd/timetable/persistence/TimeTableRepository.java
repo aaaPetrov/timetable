@@ -10,4 +10,6 @@ public interface TimeTableRepository {
 
     List<LessonBlock> getLessonBlocks();
 
+    void deleteTimeTable();
+
 }
