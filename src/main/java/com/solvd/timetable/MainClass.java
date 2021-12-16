@@ -18,7 +18,8 @@ public class MainClass {
         Algorithm algorithm = new Algorithm(daysInWeek);
         TimeTable timeTable = algorithm.createTimeTable();
 
-        //Функция createTimeTable() делает insert в базуданных, в таблицу timetable наще расписание.
+        //Функция createTimeTable() удаляет все данные из таблицы timetable в БД
+        //А после делает insert в БД, в таблицу timetable наще расписание.
         TimeTableService timeTableService = new TimeTableServiceImpl();
         timeTableService.createTimeTable(timeTable);
 
