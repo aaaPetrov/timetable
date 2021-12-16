@@ -18,6 +18,7 @@ public class TimeTableServiceImpl implements TimeTableService {
 
     @Override
     public void createTimeTable(TimeTable timeTable) {
+        timeTableRepository.deleteTimeTable();
         List<LessonBlock> lessonBlocks = timeTable.getLessonBlocks();
         lessonBlocks.stream()
                 .filter(lessonBlock -> lessonBlock != null)
