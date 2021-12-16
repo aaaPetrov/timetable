@@ -2,10 +2,8 @@ package com.solvd.timetable;
 
 import com.solvd.timetable.algorithm.Algorithm;
 import com.solvd.timetable.domain.timetable.TimeTable;
-import com.solvd.timetable.domain.timetable.LessonBlock;
-import com.solvd.timetable.persistence.Impl.TimetableRepositoryImpl;
-import com.solvd.timetable.persistence.TimetableRepository;
-import java.util.List;
+import com.solvd.timetable.service.TimetableService;
+import com.solvd.timetable.service.impl.TimetableServiceImpl;
 import java.util.Scanner;
 
 public class MainClass {
@@ -18,15 +16,10 @@ public class MainClass {
         Algorithm algorithm = new Algorithm(daysInWeek);
         TimeTable timeTable = algorithm.createTimeTable();
 
-        TimetableRepository timetableRepository = new TimetableRepositoryImpl();
+        TimetableService timetableService = new TimetableServiceImpl();
+        timetableService.createTimetable(timeTable);
 
-        for(LessonBlock lessonBlock : timeTable.getLessonBlocks()) {
-            if(lessonBlock != null) {
-                timetableRepository.createTimetable(lessonBlock);
-            }
-        }
-
-        List<LessonBlock> lessonBlocks = timetableRepository.getLessonBlocks();
+        TimeTable newTimeTable = timetableService.getTimeTable();
         System.out.println();
     }
 

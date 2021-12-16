@@ -23,4 +23,14 @@ public class TimetableServiceImpl implements TimetableService {
                 .filter(lessonBlock -> lessonBlock != null)
                 .forEach(timetableRepository::createTimetable);
     }
+
+    @Override
+    public TimeTable getTimeTable() {
+        List<LessonBlock> lessonBlocks = timetableRepository.getLessonBlocks();
+        TimeTable timeTable = new TimeTable();
+        timeTable.setLessonBlocks(lessonBlocks);
+        return timeTable;
+    }
+
+
 }
