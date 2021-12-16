@@ -5,6 +5,14 @@ import com.solvd.timetable.domain.timetable.Day;
 import com.solvd.timetable.domain.timetable.LessonBlock;
 import com.solvd.timetable.domain.timetable.LessonNumber;
 import com.solvd.timetable.domain.timetable.TimeTable;
+import com.solvd.timetable.service.GradeCurriculumService;
+import com.solvd.timetable.service.GradeService;
+import com.solvd.timetable.service.RoomService;
+import com.solvd.timetable.service.TeacherService;
+import com.solvd.timetable.service.impl.GradeCurriculumServiceImpl;
+import com.solvd.timetable.service.impl.GradeServiceImpl;
+import com.solvd.timetable.service.impl.RoomServiceImpl;
+import com.solvd.timetable.service.impl.TeacherServiceImpl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,15 +31,20 @@ public class Algorithm {
     private final List<GradeCurriculum> gradeCurricula;
 
 
-    public Algorithm(int daysInWeek, List<Grade> grades, List<Teacher> teachers, List<Room> rooms, List<GradeCurriculum> gradeCurricula) {
+    public Algorithm(int daysInWeek) {
         this.days = Arrays.asList(Day.MONDAY, Day.TUESDAY, Day.WEDNESDAY, Day.THURSDAY, Day.FRIDAY, Day.SATURDAY);
         this.lessonNumbers = Arrays.asList(LessonNumber.FIRST, LessonNumber.SECOND, LessonNumber.THIRD,
                 LessonNumber.FOURTH, LessonNumber.FIFTH, LessonNumber.SIXTH, LessonNumber.SEVENTH);
-        this.grades = grades;
-        this.teachers = teachers;
-        this.rooms = rooms;
-        this.gradeCurricula = gradeCurricula;
         this.daysInWeek = daysInWeek;
+        GradeService gradeService = new GradeServiceImpl();
+        this.grades = gradeService.getAll();
+        TeacherService teacherService = new TeacherServiceImpl();
+        this.teachers = teacherService.getAll();
+        RoomService roomService = new RoomServiceImpl();
+        this.rooms = roomService.getAll();
+        GradeCurriculumService gradeCurriculumService = new GradeCurriculumServiceImpl();
+        this.gradeCurricula = gradeCurriculumService.getAll();
+
         this.maxLessonCount = lessonNumbers.size();
         this.gradesCount = grades.size();
     }
@@ -53,8 +66,8 @@ public class Algorithm {
             for (int i = 0; i < this.daysInWeek; i++) {
                 int day = i * this.gradesCount * this.maxLessonCount;
                 for (int j = 0; j < this.gradesCount; j++) {
-
                     int grade = j * this.maxLessonCount;
+
                     List<SubjectCount> gradeCurriculum = gradeCurricula.get(j).getCountSubjects();
 
                     for (int lesson = 0; lesson < this.maxLessonCount; lesson++) {

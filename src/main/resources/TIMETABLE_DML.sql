@@ -1,4 +1,4 @@
-use timetabledb;
+use school;
 
 insert into days (name) values 
 ('MONDAY'),

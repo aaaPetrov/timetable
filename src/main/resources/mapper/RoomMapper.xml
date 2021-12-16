@@ -14,6 +14,6 @@
     <resultMap id="RoomResultMap" type="com.solvd.timetable.domain.Room" autoMapping="false">
         <id property="id" column="classroom_id"/>
         <result property="number" column="classroom_number"/>
-        <result property="roomType" column="classroom_type" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+        <result property="roomType" column="classroom_type"/>
     </resultMap>
 </mapper>
