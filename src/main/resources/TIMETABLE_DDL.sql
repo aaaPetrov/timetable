@@ -4,15 +4,14 @@ create database if not exists school;
 
 use school;
 
-drop table timetable;
-drop table subject_per_week;
-drop table teacher_subjects;
-drop table days;
-drop table lesson_numbers;
-drop table classrooms;
-drop table classes;
-drop table teachers;
-drop table subjects;
+-- drop table subject_per_week;
+-- drop table teacher_subjects;
+-- drop table days;
+-- drop table lesson_numbers;
+-- drop table classrooms;
+-- drop table classes;
+-- drop table teachers;
+-- drop table subjects;
 
 create table if not exists days(
 id serial,
