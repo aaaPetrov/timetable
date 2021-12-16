@@ -4,6 +4,7 @@ import com.solvd.timetable.algorithm.Algorithm;
 import com.solvd.timetable.domain.timetable.TimeTable;
 import com.solvd.timetable.service.TimeTableService;
 import com.solvd.timetable.service.impl.TimeTableServiceImpl;
+
 import java.util.Scanner;
 
 public class MainClass {
