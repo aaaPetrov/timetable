@@ -23,11 +23,11 @@ import java.util.stream.IntStream;
 
 public class Algorithm {
 
-    private final int daysInWeek;
-    private final int maxLessonCount;
-    private final int gradesCount;
-    private final List<Day> days;
-    private final List<LessonNumber> lessonNumbers;
+    protected final int daysInWeek;
+    protected final int maxLessonCount;
+    protected final int gradesCount;
+    protected final List<Day> days;
+    protected final List<LessonNumber> lessonNumbers;
     private final List<Grade> grades;
     private final List<Teacher> teachers;
     private final List<Room> rooms;

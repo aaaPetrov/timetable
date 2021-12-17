@@ -1,6 +1,10 @@
 package com.solvd.timetable;
 
 import com.solvd.timetable.algorithm.Algorithm;
+import com.solvd.timetable.algorithm.Genetic;
+import com.solvd.timetable.domain.Subject;
+import com.solvd.timetable.domain.Teacher;
+import com.solvd.timetable.domain.timetable.LessonBlock;
 import com.solvd.timetable.domain.timetable.TimeTable;
 import com.solvd.timetable.service.TimeTableService;
 import com.solvd.timetable.service.impl.TimeTableServiceImpl;
@@ -18,6 +22,9 @@ public class MainClass {
         //Результат - созданый объект timeTable с нашим расписанием.
         Algorithm algorithm = new Algorithm(daysInWeek);
         TimeTable timeTable = algorithm.createTimeTable();
+
+        Genetic genetic = new Genetic(daysInWeek);
+        int mark;
 
         //Функция createTimeTable() удаляет все данные из таблицы timetable в БД
         //А после делает insert в БД, в таблицу timetable наще расписание.
