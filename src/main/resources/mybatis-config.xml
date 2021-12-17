@@ -20,5 +20,10 @@
         <mapper resource="mapper/TeacherMapper.xml"/>
         <mapper resource="mapper/GradeCurriculumMapper.xml"/>
         <mapper resource="mapper/TimeTableMapper.xml"/>
+        <mapper resource="mapper/DayComplexityMapper.xml"/>
+        <mapper resource="mapper/SubjectAreaMapper.xml"/>
+        <mapper resource="mapper/SubjectComplexityMapper.xml"/>
+        <mapper resource="mapper/SubjectPositionMapper.xml"/>
+        <mapper resource="mapper/TeacherWishMapper.xml"/>
     </mappers>
 </configuration>

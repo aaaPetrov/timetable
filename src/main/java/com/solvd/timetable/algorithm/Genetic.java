@@ -5,6 +5,10 @@ import com.solvd.timetable.domain.timetable.Day;
 import com.solvd.timetable.domain.timetable.LessonBlock;
 import com.solvd.timetable.domain.timetable.LessonNumber;
 import com.solvd.timetable.domain.timetable.TimeTable;
+import com.solvd.timetable.persistence.DayComplexityRepository;
+import com.solvd.timetable.persistence.Impl.DayComplexityRepositoryImpl;
+import com.solvd.timetable.persistence.Impl.SubjectComplexityRepositoryImpl;
+import com.solvd.timetable.persistence.SubjectComplexityRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +18,22 @@ public class Genetic extends Algorithm {
 
     private List<IndividualMark> bestPopulation;
     private List<IndividualMark> currentPopulation;
-    private List<SubjectComplexity> subjectComplexities;
     private List<DayComplexity> dayComplexities;
+    private List<SubjectComplexity> subjectComplexities;
     private List<SubjectArea> subjectAreas;
     private List<SubjectPosition> subjectPositions;
     private List<TeacherWish> teacherWishes;
 
     public Genetic(int daysInWeek) {
         super(daysInWeek);
+        DayComplexityRepository dayComplexityRepository = new DayComplexityRepositoryImpl();
+        this.dayComplexities =  dayComplexityRepository.getDayComplexities();
+        formatDayComplexity(this.dayComplexities, daysInWeek);
+
+        SubjectComplexityRepository subjectComplexityRepository = new SubjectComplexityRepositoryImpl();
+        this.subjectComplexities = subjectComplexityRepository.getSubjectComplexities();
+
         /*createStartPopulation();
-        this.subjectComplexities = null;
-        this.dayComplexities = null;
         this.subjectAreas = null;
         this.bestPopulation = null;
         this.teacherWishes = null;*/
@@ -104,11 +113,50 @@ public class Genetic extends Algorithm {
             mark += gradeForOneSubjectPerLesson(lessonBlocks);
             mark += gradeForOneSubjectPerDay(lessonBlocks);
             mark += gradeForOneRoomPerLesson(lessonBlocks);
+            mark += gradeDayComplexity(lessonBlocks);
 
         }
     }
 
+    public int gradeDayComplexity(List<LessonBlock> lessonBlocks) {
+        int mark = 0;
 
+        for(int j = 0; j < this.gradesCount; j++) {
+            int grade = j * this.maxLessonCount;
+
+
+            for(int i = 0; i < this.daysInWeek; i++) {
+                int day = i * this.gradesCount * this.maxLessonCount;
+
+                int complexity = 0;
+                for(int lesson = 0; lesson < this.maxLessonCount; lesson++) {
+                    int index = day + grade + lesson;
+                    LessonBlock lessonBlock = lessonBlocks.get(index);
+                    if(lessonBlock != null) {
+                        Subject subject = lessonBlock.getSubject();
+                        complexity += this.subjectComplexities.stream()
+                                .filter(subjectComplexity -> subjectComplexity.getSubject().getName().equals(subject.getName()))
+                                .map(subjectComplexity -> subjectComplexity.getComplexity())
+                                .findFirst()
+                                .get();
+                    }
+                }
+                Day dayInWeek = days.get(i);
+                int complexityLimit = dayComplexities.stream()
+                        .filter(dayComplexity -> dayComplexity.getDay().name().equals(dayInWeek.name()))
+                        .map(dayComplexity -> dayComplexity.getDayComplexity())
+                        .findFirst()
+                        .get();
+                if(complexity < complexityLimit) {
+                    mark += 60;
+                } else {
+                    mark += 0;
+                }
+            }
+        }
+        mark = mark / this.gradesCount;
+        return mark;
+    }
 
     private int gradeForOneSubjectPerDay(List<LessonBlock> lessonBlocks) {
         int mark = 0;
@@ -375,6 +423,17 @@ public class Genetic extends Algorithm {
             newSubjects.add(newSubject);
         }
         return newSubjects;
+    }
+
+    private void formatDayComplexity(List<DayComplexity> dayComplexities, int daysInWeek) {
+        if(daysInWeek == 5) {
+            this.dayComplexities.remove(this.dayComplexities.size()-1);
+        } else {
+            for(DayComplexity dayComplexity : this.dayComplexities) {
+                int complexity = (int)(dayComplexity.getDayComplexity() * 0.833);
+                dayComplexity.setDayComplexity(complexity);
+            }
+        }
     }
 
 }

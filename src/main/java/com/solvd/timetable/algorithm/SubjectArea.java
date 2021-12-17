@@ -6,19 +6,10 @@ import java.util.List;
 
 public class SubjectArea {
 
-    private Long id;
     private String areaName;
     private List<Subject> subjects;
 
     public SubjectArea() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getAreaName() {
         return areaName;
