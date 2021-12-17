@@ -1,6 +1,7 @@
 package com.solvd.timetable.algorithm;
 
 import com.solvd.timetable.domain.Teacher;
+import com.solvd.timetable.domain.timetable.LessonNumber;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class TeacherWish {
 
     private Long id;
     private Teacher teacher;
-    private List<Integer> wishes;
+    private List<LessonNumber> wishes;
 
     public TeacherWish() {}
 
@@ -28,11 +29,11 @@ public class TeacherWish {
         this.teacher = teacher;
     }
 
-    public List<Integer> getWishes() {
+    public List<LessonNumber> getWishes() {
         return wishes;
     }
 
-    public void setWishes(List<Integer> wishes) {
+    public void setWishes(List<LessonNumber> wishes) {
         this.wishes = wishes;
     }
 
