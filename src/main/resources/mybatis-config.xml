@@ -23,5 +23,7 @@
         <mapper resource="mapper/DayComplexityMapper.xml"/>
         <mapper resource="mapper/SubjectAreaMapper.xml"/>
         <mapper resource="mapper/SubjectComplexityMapper.xml"/>
+        <mapper resource="mapper/SubjectPositionMapper.xml"/>
+        <mapper resource="mapper/TeacherWishMapper.xml"/>
     </mappers>
 </configuration>

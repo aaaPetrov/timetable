@@ -10,6 +10,12 @@ name varchar(10) not null,
 primary key(id)
 );
 
+create table if not exists lesson_numbers (
+id serial,
+time_name varchar(45) not null,
+primary key(id)
+);
+
 create table if not exists complexity_per_day(
 id serial,
 day_id  bigint unsigned not null,
@@ -30,9 +36,12 @@ primary key(id)
 create table if not exists teacher_wishes(
 id serial,
 teacher_id  bigint unsigned not null,
-number_of_lesson int unsigned not null,
+lesson_number_id bigint unsigned not null,
 primary key(id),
 constraint fk_teacher_wishes_teacher_id foreign key (teacher_id) references teachers(id) 
+on update no action 
+on delete cascade,
+constraint fk_teacher_wishes_lesson_number_id foreign key (lesson_number_id) references lesson_numbers(id) 
 on update no action 
 on delete cascade
 );
@@ -79,9 +88,12 @@ on delete cascade
 create table if not exists subject_positions (
 id serial,
 subject_id  bigint unsigned not null,
-number_of_lesson int unsigned not null,
+lesson_number_id bigint unsigned not null,
 primary key(id),
 constraint fk_subject_positions_subject_id foreign key (subject_id) references subjects(id) 
+on update no action 
+on delete cascade,
+constraint fk_subject_positions_lesson_number_id foreign key (lesson_number_id) references lesson_numbers(id) 
 on update no action 
 on delete cascade
 );
@@ -114,12 +126,6 @@ on delete cascade,
 constraint fk_subject_per_week_subject_id foreign key (subject_id) references subjects(id) 
 on update no action 
 on delete cascade
-);
-
-create table if not exists lesson_numbers (
-id serial,
-time_name varchar(45) not null,
-primary key(id)
 );
 
 create table if not exists classrooms (
