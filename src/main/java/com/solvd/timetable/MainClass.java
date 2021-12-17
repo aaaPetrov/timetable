@@ -10,7 +10,7 @@ public class MainClass {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the number of days in the school week(5 or 6): ");
+        System.out.print("Enter the number of days in school week(5 or 6): ");
         final int daysInWeek = scanner.nextInt();
 
         //Алгоритм и его запуск ( createTimeTable )
