@@ -1,4 +1,3 @@
-
 package com.solvd.timetable.algorithm;
 
 import com.solvd.timetable.domain.timetable.Day;
@@ -34,5 +33,6 @@ public class DayComplexity {
     public void setDayComplexity(int dayComplexity) {
         this.dayComplexity = dayComplexity;
     }
-
+  
 }
+
