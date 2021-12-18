@@ -33,7 +33,6 @@ public class Algorithm {
     private final List<Room> rooms;
     private final List<GradeCurriculum> gradeCurricula;
 
-
     public Algorithm(int daysInWeek) {
         this.days = Arrays.asList(Day.MONDAY, Day.TUESDAY, Day.WEDNESDAY, Day.THURSDAY, Day.FRIDAY, Day.SATURDAY);
         this.lessonNumbers = Arrays.asList(LessonNumber.FIRST, LessonNumber.SECOND, LessonNumber.THIRD,
@@ -551,41 +550,6 @@ public class Algorithm {
         return newSubjectCounts;
     }
 
-    public TimeTable formatTimeTable(TimeTable timeTable) {
-        List<LessonBlock> lessonBlocks = timeTable.getLessonBlocks();
-
-        dayLoop:
-        for(int i = 0; i < this.daysInWeek; i++) {
-            int day = i * this.gradesCount * this.maxLessonCount;
-
-            gradeLoop:
-            for(int j = 0; j < this.gradesCount; j++) {
-                int grade = j * this.maxLessonCount;
-
-                for(int lesson = 0; lesson < this.maxLessonCount; lesson++) {
-                    int index = day + grade + lesson;
-                    if(index < lessonBlocks.size() - 1) {
-                        if(!lessonBlocks.get(index).getGrade().getName().equals(lessonBlocks.get(index + 1).getGrade().getName())) {
-                            for(int x = 1; x < this.maxLessonCount - lesson; x++) {
-                                LessonBlock lessonBlock = null;
-                                lessonBlocks.add(index + x, lessonBlock);
-                            }
-                            continue gradeLoop;
-                        }
-                    } else {
-                        for(int x = 1; x < this.maxLessonCount - lesson; x++) {
-                            LessonBlock lessonBlock = null;
-                            lessonBlocks.add(index + x, lessonBlock);
-                        }
-                        break dayLoop;
-                    }
-                }
-            }
-        }
-
-        timeTable.setLessonBlocks(lessonBlocks);
-        return timeTable;
-    }
 
     public int getDaysInWeek() {
         return daysInWeek;

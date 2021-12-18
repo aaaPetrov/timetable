@@ -17,6 +17,7 @@
     </select>
 
     <resultMap id="SubjectPositionResultMap" type="com.solvd.timetable.algorithm.TeacherWish" autoMapping="false">
+        <id property="id" column="teacher_id"/>
         <association property="teacher" resultMap="com.solvd.timetable.persistence.TeacherRepository.TeacherResultMap"/>
         <collection property="wishes" resultMap="LessonNumberrResultMap"/>
     </resultMap>

@@ -7,6 +7,7 @@ import java.util.List;
 
 public class SubjectPosition {
 
+    private Long id;
     private Subject subject;
     private List<LessonNumber> positions;
 

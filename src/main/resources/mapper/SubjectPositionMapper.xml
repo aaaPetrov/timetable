@@ -4,21 +4,23 @@
 
     <select id="getSubjectPositions" resultMap="SubjectPositionResultMap">
         Select
-        s.id as subject_id,
-        s.name as subject_name,
-        s.room_type_needed as subject_room_type,
-        sp.subject_id as subject_position_subject_id,
-        sp.lesson_number_id as subject_position_lesson_number_id,
-        ln.id as lesson_number_id,
-        ln.time_name as time_name
-        from lesson_numbers ln
-        inner join subject_positions sp
-        on sp.lesson_number_id = ln.id
-        inner join subjects s
-        on sp.subject_id = s.id
+            s.id as subject_id,
+            s.name as subject_name,
+            s.room_type_needed as subject_room_type,
+            sp.subject_id as subject_position_subject_id,
+            sp.lesson_number_id as subject_position_lesson_number_id,
+            ln.id as lesson_number_id,
+            ln.time_name as time_name
+        from
+            lesson_numbers ln
+        inner join
+            subject_positions sp on sp.lesson_number_id = ln.id
+        inner join
+            subjects s on sp.subject_id = s.id
     </select>
 
     <resultMap id="SubjectPositionResultMap" type="com.solvd.timetable.algorithm.SubjectPosition" autoMapping="false">
+        <id property="id" column="subject_id"/>
         <association property="subject" resultMap="com.solvd.timetable.persistence.TeacherRepository.SubjectResultMap"/>
         <collection property="positions" resultMap="LessonNumberResultMap"/>
     </resultMap>
