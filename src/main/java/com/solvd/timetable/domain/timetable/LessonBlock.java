@@ -11,7 +11,6 @@ public class LessonBlock {
     private Day day;
     private LessonNumber lessonNumber;
     private Grade grade;
-
     private Subject subject;
     private Teacher teacher;
     private Room room;
