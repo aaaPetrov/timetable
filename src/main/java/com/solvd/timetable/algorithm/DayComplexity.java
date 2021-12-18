@@ -33,5 +33,6 @@ public class DayComplexity {
     public void setDayComplexity(int dayComplexity) {
         this.dayComplexity = dayComplexity;
     }
-
+  
 }
+
