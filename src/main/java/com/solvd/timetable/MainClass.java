@@ -29,9 +29,6 @@ public class MainClass {
         //Функция getTimeTable возвращает из базы данных расписание внутри объекта TimeTable.
         TimeTable newTimeTable = timeTableService.getTimeTable();
         timeTable.printTable(newTimeTable);
-
-
-
     }
 
     private static int chooseDaysInWeek() {

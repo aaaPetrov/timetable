@@ -98,8 +98,6 @@ public class Room {
 
     @Override
     public String toString() {
-        return "r.#" + number
-//                + " (" + roomType + ")"
-                ;
+        return "Cabinet #" + number;
     }
 }

@@ -1,8 +1,9 @@
 package com.solvd.timetable.domain.timetable;
 
+import com.solvd.timetable.domain.Grade;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -25,38 +26,74 @@ public class TimeTable {
         this.lessonBlocks = lessonBlocks;
     }
 
-    @Override
-    public String toString() {
-        return "TimeTable\n" + lessonBlocks;
-    }
+    public void printTable(TimeTable timeTable) {
+        List<Grade> grades = gradesInTimetable(timeTable.getLessonBlocks());
+        List<Day> days = daysInWeek(timeTable.getLessonBlocks());
 
-    public void printTable(TimeTable newTimeTable) {
-        //       System.out.println(newTimeTable);
-        System.out.println("Grade");
-        System.out.println("Day");
-        System.out.println("Lesson number || Lesson time || Subject || Room || Teacher \n\n");
+        for (int i = 0; i < grades.size(); i++) {
+            System.out.println("\n\n\n\t\t\t\t\t\t\t\t" + grades.get(i).getName());
 
-        List<String> gradesName = Arrays.asList("7A", "7B","8A","8B");
-        List<Day> workDays = Arrays.asList(Day.MONDAY, Day.TUESDAY, Day.WEDNESDAY, Day.THURSDAY, Day.FRIDAY, Day.SATURDAY);
-        for (int i = 0; i < gradesName.size(); i++) {
-            System.out.println("\n\n\n\t\t\t\t" + gradesName.get(i));
+            for (int d = 0; d < days.size(); d++) {
+                System.out.println("\n\t\t\t\t\t\t\t\t" + days.get(d).name());
 
-            for (int d = 0; d < workDays.size(); d++) {
-                System.out.println("\n\t\t\t\t" + workDays.get(d));
-
-                for (int j = 0; j < newTimeTable.getLessonBlocks().size(); j++) {
-                    if (newTimeTable.getLessonBlocks().get(j) != null) {
-
-                        if (newTimeTable.getLessonBlocks().get(j).getGrade().getName().equals(gradesName.get(i)) &&
-                        newTimeTable.getLessonBlocks().get(j).getDay().equals(workDays.get(d))) {
-                            System.out.print("\n " + newTimeTable.getLessonBlocks().get(j).getLessonNumber().getId());
-                            System.out.println(newTimeTable.getLessonBlocks().get(j));
+                for (int j = 0; j < timeTable.getLessonBlocks().size(); j++) {
+                    if (timeTable.getLessonBlocks().get(j) != null) {
+                        if (timeTable.getLessonBlocks().get(j).getGrade().getName().equals(grades.get(i).getName()) &&
+                                timeTable.getLessonBlocks().get(j).getDay().equals(days.get(d))) {
+                            System.out.print("\n " + timeTable.getLessonBlocks().get(j).getLessonNumber().getId());
+                            System.out.println(timeTable.getLessonBlocks().get(j));
                         }
-
                     }
                 }
             }
         }
-
+        System.out.println("\n");
     }
+
+    private List<Day> daysInWeek(List<LessonBlock> lessonBlocks) {
+        List<Day> daysInTimetable = new ArrayList<>();
+        for (LessonBlock lessonBlock : lessonBlocks) {
+            if (lessonBlock != null) {
+                if (daysInTimetable.isEmpty()) {
+                    daysInTimetable.add(lessonBlock.getDay());
+                    continue;
+                } else {
+                    int dayCount = 0;
+                    for (Day day : daysInTimetable) {
+                        if (!day.name().equals(lessonBlock.getDay().name())) {
+                            dayCount++;
+                        }
+                    }
+                    if (dayCount == daysInTimetable.size()) {
+                        daysInTimetable.add(lessonBlock.getDay());
+                    }
+                }
+            }
+        }
+        return  daysInTimetable;
+    }
+
+    private List<Grade> gradesInTimetable(List<LessonBlock> lessonBlocks) {
+        List<Grade> gradesInTimetable = new ArrayList<>();
+        for (LessonBlock lessonBlock : lessonBlocks) {
+            if (lessonBlock != null) {
+                if (gradesInTimetable.isEmpty()) {
+                    gradesInTimetable.add(lessonBlock.getGrade());
+                    continue;
+                } else {
+                    int gradeCount = 0;
+                    for (Grade grade : gradesInTimetable) {
+                        if (!grade.getName().equals(lessonBlock.getGrade().getName())) {
+                            gradeCount++;
+                        }
+                    }
+                    if (gradeCount == gradesInTimetable.size()) {
+                        gradesInTimetable.add(lessonBlock.getGrade());
+                    }
+                }
+            }
+        }
+        return  gradesInTimetable;
+    }
+
 }

@@ -16,6 +16,7 @@ import com.solvd.timetable.service.impl.GradeServiceImpl;
 import com.solvd.timetable.service.impl.RoomServiceImpl;
 import com.solvd.timetable.service.impl.TeacherServiceImpl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -57,7 +58,6 @@ public class Algorithm {
 
         again:
         while (true) {
-            /*gradeCurricula = createGradeCurricula(grades, subjects);*/
             List<GradeCurriculum> gradeCurricula = cloneGradeCurricula(this.gradeCurricula);
             setAllTeachersFlagTrue(this.teachers);
             setAllRoomsFlagTrue(this.rooms);
@@ -76,7 +76,6 @@ public class Algorithm {
                         if (table.get(day + grade + lesson) != null) {
                             TeacherSubject teacherSubject = randomSubjectTeacher(lesson, gradeCurriculum, this.teachers);
                             if (teacherSubject == null) {
-//                                System.out.println("\nBAD TIMETABLE...AGAIN");
                                 continue again;
                             }
                             Room room = findRoom(lesson, teacherSubject.getSubject(), this.rooms);
@@ -87,20 +86,15 @@ public class Algorithm {
                             lessonBlock.setSubject(teacherSubject.getSubject());
                             lessonBlock.setTeacher(teacherSubject.getTeacher());
                             lessonBlock.setRoom(room);
-
-//                            System.out.print((lesson + 1) + ". " + teacherSubject.getSubject().getName() + " '"
-//                                    + teacherSubject.getTeacher().getFirstName() + " " + teacherSubject.getTeacher().getLastName() + "'  (" + room.getNumber() + ") |||");
                         }
                     }
 
                     setAllGradeFlagsTrue(gradeCurriculum);
-//                    System.out.println("\n");
                 }
+
                 setAllRoomsFlagTrue(this.rooms);
                 setAllSubjectsFlagsTrue(gradeCurricula);
                 setAllTeachersFlagTrue(this.teachers);
-
-//                System.out.println("---------");
             }
 
             int lessonsInCurriculum = gradeCurricula.stream().
@@ -490,12 +484,9 @@ public class Algorithm {
             for (int lessonInThatDay : lessonsPerDayInClass) {
                 for (int lesson = 0; lesson < lessonInThatDay; lesson++) {
                     timeTable.getLessonBlocks().set(day * gradesCount * maxLessonCount + grade * maxLessonCount + lesson, new LessonBlock());
-//                    System.out.print("1 ");
                 }
-//                System.out.println();
                 day++;
             }
-//            System.out.println("--------------");
             grade++;
         }
     }
@@ -548,7 +539,6 @@ public class Algorithm {
         }
         return newSubjectCounts;
     }
-
 
     public int getDaysInWeek() {
         return daysInWeek;
