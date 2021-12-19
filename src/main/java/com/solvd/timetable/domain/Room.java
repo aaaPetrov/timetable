@@ -96,4 +96,8 @@ public class Room {
         this.seventhLessonFlag = seventhLessonFlag;
     }
 
+    @Override
+    public String toString() {
+        return "Cabinet #" + number;
+    }
 }

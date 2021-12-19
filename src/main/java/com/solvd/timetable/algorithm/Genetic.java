@@ -5,11 +5,6 @@ import com.solvd.timetable.domain.timetable.Day;
 import com.solvd.timetable.domain.timetable.LessonBlock;
 import com.solvd.timetable.domain.timetable.LessonNumber;
 import com.solvd.timetable.domain.timetable.TimeTable;
-import com.solvd.timetable.persistence.DayComplexityRepository;
-import com.solvd.timetable.persistence.Impl.DayComplexityRepositoryImpl;
-import com.solvd.timetable.persistence.Impl.SubjectComplexityRepositoryImpl;
-import com.solvd.timetable.persistence.SubjectAreaRepository;
-import com.solvd.timetable.persistence.SubjectComplexityRepository;
 import com.solvd.timetable.service.*;
 import com.solvd.timetable.service.impl.*;
 
@@ -56,12 +51,11 @@ public class Genetic extends Algorithm {
     public TimeTable tryGenetic() {
         long iteration = 1;
         while (iteration < 2000000) {
-            System.out.println("iteration " + iteration + " started.");
             crossBreeding();
             mutation();
             grading();
             selection();
-            System.out.println("iteration " + iteration + " ended.");
+            System.out.println("iteration " + iteration + ".");
             iteration++;
         }
         TimeTable timeTable = new TimeTable();

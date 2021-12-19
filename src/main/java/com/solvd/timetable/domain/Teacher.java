@@ -107,4 +107,9 @@ public class Teacher {
         this.seventhLessonFlag = seventhLessonFlag;
     }
 
+    @Override
+    public String toString() {
+        return " " + firstName  +
+                " " + lastName ;
+    }
 }
