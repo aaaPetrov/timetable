@@ -94,7 +94,7 @@ public class Algorithm {
                     }
 
                     setAllGradeFlagsTrue(gradeCurriculum);
-                    System.out.println("\n");
+//                    System.out.println("\n");
                 }
                 setAllRoomsFlagTrue(this.rooms);
                 setAllSubjectsFlagsTrue(gradeCurricula);
@@ -492,7 +492,7 @@ public class Algorithm {
                     timeTable.getLessonBlocks().set(day * gradesCount * maxLessonCount + grade * maxLessonCount + lesson, new LessonBlock());
 //                    System.out.print("1 ");
                 }
-                System.out.println();
+//                System.out.println();
                 day++;
             }
 //            System.out.println("--------------");

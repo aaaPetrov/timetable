@@ -28,9 +28,6 @@ public class MainClass {
 
         //Функция getTimeTable возвращает из базы данных расписание внутри объекта TimeTable.
         TimeTable newTimeTable = timeTableService.getTimeTable();
-
-        System.out.println();
-        System.out.println("\n\n  == mine ==  \n\n");
         timeTable.printTable(newTimeTable);
 
 
