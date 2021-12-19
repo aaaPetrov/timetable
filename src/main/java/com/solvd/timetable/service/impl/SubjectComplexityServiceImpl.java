@@ -19,4 +19,5 @@ public class SubjectComplexityServiceImpl implements SubjectComplexityService {
     public List<SubjectComplexity> getAll() {
         return subjectComplexityRepository.getSubjectComplexities();
     }
+
 }

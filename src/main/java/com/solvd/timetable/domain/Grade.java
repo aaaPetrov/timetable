@@ -26,6 +26,6 @@ public class Grade {
 
     @Override
     public String toString() {
-        return " " + name ;
+        return " " + name;
     }
 }

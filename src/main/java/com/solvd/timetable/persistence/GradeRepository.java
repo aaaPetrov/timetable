@@ -7,4 +7,5 @@ import java.util.List;
 public interface GradeRepository {
 
     List<Grade> getGrades();
+
 }

@@ -8,7 +8,8 @@ public class DayComplexity {
     private Day day;
     private int dayComplexity;
 
-    public DayComplexity() {}
+    public DayComplexity() {
+    }
 
     public Long getId() {
         return id;
@@ -33,6 +34,6 @@ public class DayComplexity {
     public void setDayComplexity(int dayComplexity) {
         this.dayComplexity = dayComplexity;
     }
-  
+
 }
 

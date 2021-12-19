@@ -18,4 +18,5 @@ public class SubjectAreaRepositoryImpl implements SubjectAreaRepository {
         }
         return subjectAreas;
     }
+
 }

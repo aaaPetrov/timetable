@@ -19,4 +19,5 @@ public class GradeServiceImpl implements GradeService {
     public List<Grade> getAll() {
         return gradeRepository.getGrades();
     }
+
 }

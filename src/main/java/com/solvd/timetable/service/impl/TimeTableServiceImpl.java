@@ -84,7 +84,6 @@ public class TimeTableServiceImpl implements TimeTableService {
             if (lessonBlock != null) {
                 if (daysInTimetable.isEmpty()) {
                     daysInTimetable.add(lessonBlock.getDay());
-                    continue;
                 } else {
                     int dayCount = 0;
                     for (Day day : daysInTimetable) {
@@ -98,7 +97,7 @@ public class TimeTableServiceImpl implements TimeTableService {
                 }
             }
         }
-       return  daysInTimetable.size();
+        return daysInTimetable.size();
     }
 
     private int gradesInTimetable(List<LessonBlock> lessonBlocks) {
@@ -107,7 +106,6 @@ public class TimeTableServiceImpl implements TimeTableService {
             if (lessonBlock != null) {
                 if (gradesInTimetable.isEmpty()) {
                     gradesInTimetable.add(lessonBlock.getGrade());
-                    continue;
                 } else {
                     int gradeCount = 0;
                     for (Grade grade : gradesInTimetable) {
@@ -121,7 +119,7 @@ public class TimeTableServiceImpl implements TimeTableService {
                 }
             }
         }
-        return  gradesInTimetable.size();
+        return gradesInTimetable.size();
     }
 
 }

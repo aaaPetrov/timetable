@@ -9,7 +9,8 @@ public class SubjectArea {
     private String areaName;
     private List<Subject> subjects;
 
-    public SubjectArea() {}
+    public SubjectArea() {
+    }
 
     public String getAreaName() {
         return areaName;

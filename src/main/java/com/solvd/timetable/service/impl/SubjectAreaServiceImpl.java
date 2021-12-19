@@ -19,4 +19,5 @@ public class SubjectAreaServiceImpl implements SubjectAreaService {
     public List<SubjectArea> getAll() {
         return subjectAreaRepository.getSubjectAreas();
     }
+
 }

@@ -19,4 +19,5 @@ public class RoomServiceImpl implements RoomService {
     public List<Room> getAll() {
         return roomRepository.getRooms();
     }
+
 }

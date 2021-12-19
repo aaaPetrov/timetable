@@ -19,4 +19,5 @@ public class TeacherServiceImpl implements TeacherService {
     public List<Teacher> getAll() {
         return teacherRepository.getTeachers();
     }
+
 }

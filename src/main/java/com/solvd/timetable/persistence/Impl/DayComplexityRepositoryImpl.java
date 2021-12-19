@@ -18,4 +18,5 @@ public class DayComplexityRepositoryImpl implements DayComplexityRepository {
         }
         return dayComplexities;
     }
+
 }

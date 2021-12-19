@@ -11,7 +11,8 @@ public class TeacherWish {
     private Teacher teacher;
     private List<LessonNumber> wishes;
 
-    public TeacherWish() {}
+    public TeacherWish() {
+    }
 
     public Long getId() {
         return id;
