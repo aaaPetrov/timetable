@@ -34,8 +34,8 @@ public class Menu {
                     }
                     continue;
                 case 2:
-                    LOGGER.info("\n\nPlease wait. It can takes from 10 seconds to 5 minutes.\n\n");
                     final int daysInWeek = chooseDaysInWeek();
+                    LOGGER.info("\n\nPlease wait. It can takes from 10 seconds to 5 minutes.\n\n");
                     Algorithm algorithm = new Algorithm(daysInWeek);
                     TimeTable newTimeTable = algorithm.createTimeTable();
                     timeTableService.createTimeTable(newTimeTable);
