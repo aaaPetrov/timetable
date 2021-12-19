@@ -119,4 +119,8 @@ public class Subject {
                 && (this.getName() != null && this.getName().equals(subject.getName()));
     }
 
+    @Override
+    public String toString() {
+        return " " + name ;
+    }
 }

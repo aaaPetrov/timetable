@@ -75,4 +75,13 @@ public class LessonBlock {
         this.room = room;
     }
 
+    @Override
+    public String toString() {
+        return
+
+                " || " + lessonNumber.getTime() + " || " +
+                        subject + " || " +
+                        room + " || " +
+                        teacher;
+    }
 }

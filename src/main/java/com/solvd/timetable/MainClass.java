@@ -29,6 +29,11 @@ public class MainClass {
         //Функция formatTimeTable приводит наше расписание в удобный для вывода вид.
         newTimeTable = algorithm.formatTimeTable(newTimeTable);
         System.out.println();
+        System.out.println("\n\n  == mine ==  \n\n");
+        timeTable.printTable(newTimeTable);
+
+
+
     }
 
 }
