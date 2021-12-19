@@ -52,7 +52,7 @@ public class Genetic extends Algorithm {
             grading();
             selection();
             if(iteration%100000 == 0) {
-                System.out.println(iteration + "iterations from 2.000.000.");
+                System.out.println(iteration + " iterations from 2.000.000.");
             }
             iteration++;
         }
