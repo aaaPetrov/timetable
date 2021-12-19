@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public void menuPrinting() {
+    public void show() {
         while (true) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("\nMenu:\n" +
