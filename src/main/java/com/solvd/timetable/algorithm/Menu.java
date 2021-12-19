@@ -9,48 +9,45 @@ import java.util.Scanner;
 public class Menu {
 
     public void menuPrinting() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\nMenu:\n" +
-                "1. Print existing timetable\n" +
-                "2. Create new timetable with simple algorithm\n" +
-                "3. Create new timetable with genetic algorithm\n" +
-                "4. Exit menu");
-        System.out.println("Choose option: ");
-        Integer option = scanner.nextInt();
-        TimeTableService timeTableService = new TimeTableServiceImpl();
-        switch (option) {
-            case 1:
-                TimeTable timeTable = timeTableService.getTimeTable();
-                if (timeTable.getLessonBlocks().size() != 0) {
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("\nMenu:\n" +
+                    "1. Print existing timetable\n" +
+                    "2. Create new timetable with simple algorithm\n" +
+                    "3. Create new timetable with genetic algorithm\n" +
+                    "4. Exit menu");
+            System.out.println("Choose option: ");
+            Integer option = scanner.nextInt();
+            TimeTableService timeTableService = new TimeTableServiceImpl();
+            switch (option) {
+                case 1:
+                    TimeTable timeTable = timeTableService.getTimeTable();
+                    if (timeTable.getLessonBlocks().size() != 0) {
+                        System.out.println("Printing timetable");
+                    } else {
+                        System.out.println("Timetable is empty");
+                    }
+                    continue;
+                case 2:
+                    final int daysInWeek = chooseDaysInWeek();
+                    Algorithm algorithm = new Algorithm(daysInWeek);
+                    TimeTable newTimeTable = algorithm.createTimeTable();
+                    timeTableService.createTimeTable(newTimeTable);
                     System.out.println("Printing timetable");
-                }
-                else {
-                    System.out.println("Timetable is empty");
-                }
-                menuPrinting();
-                break;
-            case 2:
-                final int daysInWeek = chooseDaysInWeek();
-                Algorithm algorithm = new Algorithm(daysInWeek);
-                TimeTable newTimeTable = algorithm.createTimeTable();
-                timeTableService.createTimeTable(newTimeTable);
-                System.out.println("Printing timetable");
-                menuPrinting();
-                break;
-            case 3:
-                final int daysInWeekGenetic = chooseDaysInWeek();
-                Genetic genetic = new Genetic(daysInWeekGenetic);
-                TimeTable timeTableGenetic = genetic.tryGenetic();
-                timeTableService.createTimeTable(timeTableGenetic);
-                System.out.println("Printing timetable");
-                menuPrinting();
-                break;
-            case 4:
-                System.out.println("The program completed");
-                break;
-            default:
-                System.out.println("You entered wrong value");
-                menuPrinting();
+                    continue;
+                case 3:
+                    final int daysInWeekGenetic = chooseDaysInWeek();
+                    Genetic genetic = new Genetic(daysInWeekGenetic);
+                    TimeTable timeTableGenetic = genetic.tryGenetic();
+                    timeTableService.createTimeTable(timeTableGenetic);
+                    System.out.println("Printing timetable");
+                    continue;
+                case 4:
+                    System.out.println("The program completed");
+                    return;
+                default:
+                    System.out.println("You entered wrong value");
+            }
         }
     }
 
