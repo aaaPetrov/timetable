@@ -7,12 +7,16 @@ import com.solvd.timetable.domain.timetable.LessonNumber;
 import com.solvd.timetable.domain.timetable.TimeTable;
 import com.solvd.timetable.service.*;
 import com.solvd.timetable.service.impl.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Genetic extends Algorithm {
+
+    private static final Logger LOGGER = LogManager.getLogger(Genetic.class);
 
     private List<IndividualMark> bestPopulation;
     private List<IndividualMark> currentPopulation;
@@ -23,6 +27,7 @@ public class Genetic extends Algorithm {
     private final List<TeacherWish> teacherWishes;
 
     public Genetic(int daysInWeek) {
+
         super(daysInWeek);
 
         DayComplexityService dayComplexityService = new DayComplexityServiceImpl();
@@ -52,7 +57,7 @@ public class Genetic extends Algorithm {
             grading();
             selection();
             if(iteration%100000 == 0) {
-                System.out.println(iteration + " iterations from 2.000.000.");
+                LOGGER.info(iteration + " iterations from 2.000.000.");
             }
             iteration++;
         }

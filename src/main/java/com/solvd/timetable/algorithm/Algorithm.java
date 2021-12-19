@@ -1,6 +1,9 @@
 package com.solvd.timetable.algorithm;
 
-import com.solvd.timetable.domain.*;
+import com.solvd.timetable.domain.Grade;
+import com.solvd.timetable.domain.Room;
+import com.solvd.timetable.domain.Subject;
+import com.solvd.timetable.domain.Teacher;
 import com.solvd.timetable.domain.curriculum.GradeCurriculum;
 import com.solvd.timetable.domain.curriculum.SubjectCount;
 import com.solvd.timetable.domain.timetable.Day;

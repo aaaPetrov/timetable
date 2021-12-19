@@ -13,6 +13,7 @@
         <javaVersion>1.8</javaVersion>
         <jdbcVersion>8.0.27</jdbcVersion>
         <myBatisVersion>3.5.7</myBatisVersion>
+        <log4jversion>2.14.1</log4jversion>
     </properties>
 
     <dependencies>
@@ -25,6 +26,16 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>${myBatisVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4jversion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4jversion}</version>
         </dependency>
     </dependencies>
 
