@@ -13,7 +13,7 @@
         <javaVersion>1.8</javaVersion>
         <jdbcVersion>8.0.27</jdbcVersion>
         <myBatisVersion>3.5.7</myBatisVersion>
-        <log4jversion>2.14.1</log4jversion>
+        <log4jversion>2.17.0</log4jversion>
     </properties>
 
     <dependencies>
