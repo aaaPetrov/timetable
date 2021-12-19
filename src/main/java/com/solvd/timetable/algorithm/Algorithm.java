@@ -19,19 +19,19 @@ import com.solvd.timetable.service.impl.TeacherServiceImpl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Algorithm {
 
-    private final int daysInWeek;
-    private final int maxLessonCount;
-    private final int gradesCount;
-    private final List<Day> days;
-    private final List<LessonNumber> lessonNumbers;
+    protected final int daysInWeek;
+    protected final int maxLessonCount;
+    protected final int gradesCount;
+    protected final List<Day> days;
+    protected final List<LessonNumber> lessonNumbers;
     private final List<Grade> grades;
     private final List<Teacher> teachers;
     private final List<Room> rooms;
     private final List<GradeCurriculum> gradeCurricula;
-
 
     public Algorithm(int daysInWeek) {
         this.days = Arrays.asList(Day.MONDAY, Day.TUESDAY, Day.WEDNESDAY, Day.THURSDAY, Day.FRIDAY, Day.SATURDAY);
@@ -51,41 +51,6 @@ public class Algorithm {
         this.gradesCount = grades.size();
     }
 
-    public TimeTable formatTimeTable(TimeTable timeTable) {
-        List<LessonBlock> lessonBlocks = timeTable.getLessonBlocks();
-
-        dayLoop:
-        for(int i = 0; i < this.daysInWeek; i++) {
-            int day = i * this.gradesCount * this.maxLessonCount;
-
-            gradeLoop:
-            for(int j = 0; j < this.gradesCount; j++) {
-                int grade = j * this.maxLessonCount;
-
-                for(int lesson = 0; lesson < this.maxLessonCount; lesson++) {
-                    int index = day + grade + lesson;
-                    if(index < lessonBlocks.size() - 1) {
-                        if(!lessonBlocks.get(index).getGrade().getName().equals(lessonBlocks.get(index + 1).getGrade().getName())) {
-                            for(int x = 1; x < this.maxLessonCount - lesson; x++) {
-                                LessonBlock lessonBlock = null;
-                                lessonBlocks.add(index + x, lessonBlock);
-                            }
-                            continue gradeLoop;
-                        }
-                    } else {
-                        for(int x = 1; x < this.maxLessonCount - lesson; x++) {
-                            LessonBlock lessonBlock = null;
-                            lessonBlocks.add(index + x, lessonBlock);
-                        }
-                        break dayLoop;
-                    }
-                }
-            }
-        }
-
-        timeTable.setLessonBlocks(lessonBlocks);
-        return timeTable;
-    }
     public TimeTable createTimeTable() {
         List<List<Integer>> lessonsPerDay = setAmountOfLessonsPerDay(this.daysInWeek, this.gradeCurricula);
         TimeTable timeTable = new TimeTable(this.daysInWeek * this.maxLessonCount * this.gradesCount);
@@ -128,7 +93,7 @@ public class Algorithm {
                         }
                     }
 
-                    gradeCurriculum.forEach(subjectCount -> subjectCount.getSubject().setGradeFlag(true));
+                    setAllGradeFlagsTrue(gradeCurriculum);
                     System.out.println("\n");
                 }
                 setAllRoomsFlagTrue(this.rooms);
@@ -148,6 +113,10 @@ public class Algorithm {
             }
         }
         return timeTable;
+    }
+
+    private void setAllGradeFlagsTrue(List<SubjectCount> gradeCurriculum) {
+        gradeCurriculum.forEach(subjectCount -> subjectCount.getSubject().setGradeFlag(true));
     }
 
     private void setAllSubjectsFlagsTrue(List<GradeCurriculum> gradeCurricula) {
@@ -579,6 +548,7 @@ public class Algorithm {
         }
         return newSubjectCounts;
     }
+
 
     public int getDaysInWeek() {
         return daysInWeek;
