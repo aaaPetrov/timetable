@@ -18,4 +18,5 @@ public class SubjectComplexityRepositoryImpl implements SubjectComplexityReposit
         }
         return subjectComplexities;
     }
+
 }

@@ -19,4 +19,5 @@ public class TeacherWishServiceImpl implements TeacherWishService {
     public List<TeacherWish> getAll() {
         return teacherWishesRepository.getTeacherWishes();
     }
+
 }

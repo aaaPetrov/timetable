@@ -9,7 +9,8 @@ public class IndividualMark {
     private List<LessonBlock> individual;
     private int mark;
 
-    public IndividualMark() {}
+    public IndividualMark() {
+    }
 
     public List<LessonBlock> getIndividual() {
         return individual;

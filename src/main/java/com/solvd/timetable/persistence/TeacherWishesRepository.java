@@ -7,4 +7,5 @@ import java.util.List;
 public interface TeacherWishesRepository {
 
     List<TeacherWish> getTeacherWishes();
+
 }

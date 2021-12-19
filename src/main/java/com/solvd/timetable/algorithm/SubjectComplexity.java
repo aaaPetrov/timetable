@@ -8,7 +8,8 @@ public class SubjectComplexity {
     private Subject subject;
     private int complexity;
 
-    public SubjectComplexity() {}
+    public SubjectComplexity() {
+    }
 
     public Long getId() {
         return id;

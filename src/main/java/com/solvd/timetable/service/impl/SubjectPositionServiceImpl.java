@@ -19,4 +19,5 @@ public class SubjectPositionServiceImpl implements SubjectPositionService {
     public List<SubjectPosition> getAll() {
         return subjectPositionRepository.getSubjectPositions();
     }
+
 }

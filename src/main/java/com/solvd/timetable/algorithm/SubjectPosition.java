@@ -11,7 +11,8 @@ public class SubjectPosition {
     private Subject subject;
     private List<LessonNumber> positions;
 
-    public SubjectPosition() {}
+    public SubjectPosition() {
+    }
 
     public Subject getSubject() {
         return subject;
@@ -27,6 +28,14 @@ public class SubjectPosition {
 
     public void setPositions(List<LessonNumber> positions) {
         this.positions = positions;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

@@ -18,4 +18,5 @@ public class GradeCurriculumRepositoryImpl implements GradeCurriculumRepository 
         }
         return gradeCurricula;
     }
+
 }

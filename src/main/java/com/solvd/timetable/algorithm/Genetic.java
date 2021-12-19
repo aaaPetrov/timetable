@@ -16,11 +16,11 @@ public class Genetic extends Algorithm {
 
     private List<IndividualMark> bestPopulation;
     private List<IndividualMark> currentPopulation;
-    private List<DayComplexity> dayComplexities;
-    private List<SubjectComplexity> subjectComplexities;
-    private List<SubjectArea> subjectAreas;
-    private List<SubjectPosition> subjectPositions;
-    private List<TeacherWish> teacherWishes;
+    private final List<DayComplexity> dayComplexities;
+    private final List<SubjectComplexity> subjectComplexities;
+    private final List<SubjectArea> subjectAreas;
+    private final List<SubjectPosition> subjectPositions;
+    private final List<TeacherWish> teacherWishes;
 
     public Genetic(int daysInWeek) {
         super(daysInWeek);
@@ -42,10 +42,6 @@ public class Genetic extends Algorithm {
         this.teacherWishes = teacherWishService.getAll();
 
         createStartPopulation();
-        for(IndividualMark individualMark : this.bestPopulation) {
-            System.out.print(individualMark.getMark() + "  ");
-        }
-        System.out.println();
     }
 
     public TimeTable tryGenetic() {
@@ -55,7 +51,9 @@ public class Genetic extends Algorithm {
             mutation();
             grading();
             selection();
-            System.out.println("iteration " + iteration + ".");
+            if(iteration%100000 == 0) {
+                System.out.println(iteration + "iterations from 2.000.000.");
+            }
             iteration++;
         }
         TimeTable timeTable = new TimeTable();
@@ -97,8 +95,8 @@ public class Genetic extends Algorithm {
 
     private void mutation() {
         for (IndividualMark individualMark : this.currentPopulation) {
-            LessonBlock firstLessonBlock = null;
-            LessonBlock secondLessonBlock = null;
+            LessonBlock firstLessonBlock;
+            LessonBlock secondLessonBlock;
             while (true) {
                 firstLessonBlock = getRandomLessonBlock(individualMark);
                 secondLessonBlock = getRandomLessonBlock(individualMark);
@@ -154,7 +152,7 @@ public class Genetic extends Algorithm {
             int current = this.currentPopulation.get(i).getMark();
             if(maximal < current) {
                 maximal = current;
-                maximalIndex = 0;
+                maximalIndex = i;
             }
         }
         return this.currentPopulation.get(maximalIndex);
@@ -167,7 +165,7 @@ public class Genetic extends Algorithm {
             int current = this.bestPopulation.get(i).getMark();
            if(minimal > current) {
                minimal = current;
-               minimalIndex = 0;
+               minimalIndex = i;
            }
         }
         return this.bestPopulation.get(minimalIndex);
@@ -180,7 +178,7 @@ public class Genetic extends Algorithm {
             int current = this.bestPopulation.get(i).getMark();
             if(maximal < current) {
                 maximal = current;
-                maximalIndex = 0;
+                maximalIndex = i;
             }
         }
         return this.bestPopulation.get(maximalIndex);
@@ -222,8 +220,7 @@ public class Genetic extends Algorithm {
                 }
             }
         }
-        int mark = countOfMatches * 2;
-        return mark;
+        return countOfMatches * 2;
     }
 
     private int gradeSubjectPositions(List<LessonBlock> lessonBlocks) {
@@ -249,8 +246,7 @@ public class Genetic extends Algorithm {
                 }
             }
         }
-        int mark = countOfMatches * 3;
-        return mark;
+        return countOfMatches * 3;
     }
 
     private int gradeAreaAlternation(List<LessonBlock> lessonBlocks) {
@@ -484,7 +480,7 @@ public class Genetic extends Algorithm {
 
     private LessonBlock getRandomLessonBlock(IndividualMark individualMark) {
         int range = individualMark.getIndividual().size();
-        LessonBlock result = null;
+        LessonBlock result;
         while (true) {
             int random = (int) (Math.random() * range);
             result = individualMark.getIndividual().get(random);
@@ -644,7 +640,6 @@ public class Genetic extends Algorithm {
                     mark = 10;
                     break;
                 case 2:
-                    mark = 0;
                     break;
             }
         } else {
@@ -656,10 +651,8 @@ public class Genetic extends Algorithm {
                     mark = 20;
                     break;
                 case 2:
-                    mark = 0;
-                    break;
                 case 1:
-                    mark = 0;
+                    break;
             }
         }
         return mark;
@@ -668,7 +661,6 @@ public class Genetic extends Algorithm {
     private List<LessonNumber> findSubjectPositions(Subject subject) {
         List<LessonNumber> subjectPositions = null;
 
-        find:
         for (SubjectPosition subjectPosition : this.subjectPositions) {
             if (subjectPosition.getSubject().getName().equals(subject.getName())) {
                 subjectPositions = subjectPosition.getPositions();
@@ -680,7 +672,6 @@ public class Genetic extends Algorithm {
     private List<LessonNumber> findTeacherWishes(Teacher teacher) {
         List<LessonNumber> teacherWishes = null;
 
-        find:
         for (TeacherWish teacherWish : this.teacherWishes) {
             if (teacherWish.getTeacher().getId().equals(teacher.getId())) {
                 teacherWishes = teacherWish.getWishes();

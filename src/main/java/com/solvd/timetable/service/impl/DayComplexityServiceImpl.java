@@ -19,4 +19,5 @@ public class DayComplexityServiceImpl implements DayComplexityService {
     public List<DayComplexity> getAll() {
         return dayComplexityRepository.getDayComplexities();
     }
+
 }

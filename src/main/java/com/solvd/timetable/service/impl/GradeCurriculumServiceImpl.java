@@ -19,4 +19,5 @@ public class GradeCurriculumServiceImpl implements GradeCurriculumService {
     public List<GradeCurriculum> getAll() {
         return gradeCurriculumRepository.getGradeCurricula();
     }
+
 }

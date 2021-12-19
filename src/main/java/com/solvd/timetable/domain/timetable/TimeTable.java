@@ -26,22 +26,22 @@ public class TimeTable {
         this.lessonBlocks = lessonBlocks;
     }
 
-    public void printTable(TimeTable timeTable) {
-        List<Grade> grades = gradesInTimetable(timeTable.getLessonBlocks());
-        List<Day> days = daysInWeek(timeTable.getLessonBlocks());
+    public void printTable() {
+        List<Grade> grades = gradesInTimetable(this.lessonBlocks);
+        List<Day> days = daysInWeek(this.lessonBlocks);
 
-        for (int i = 0; i < grades.size(); i++) {
-            System.out.println("\n\n\n\t\t\t\t\t\t\t\t" + grades.get(i).getName());
+        for (Grade grade : grades) {
+            System.out.println("\n\n\n\t\t\t\t\t\t\t\t" + grade.getName());
 
-            for (int d = 0; d < days.size(); d++) {
-                System.out.println("\n\t\t\t\t\t\t\t\t" + days.get(d).name());
+            for (Day day : days) {
+                System.out.println("\n\t\t\t\t\t\t\t\t" + day.name());
 
-                for (int j = 0; j < timeTable.getLessonBlocks().size(); j++) {
-                    if (timeTable.getLessonBlocks().get(j) != null) {
-                        if (timeTable.getLessonBlocks().get(j).getGrade().getName().equals(grades.get(i).getName()) &&
-                                timeTable.getLessonBlocks().get(j).getDay().equals(days.get(d))) {
-                            System.out.print("\n " + timeTable.getLessonBlocks().get(j).getLessonNumber().getId());
-                            System.out.println(timeTable.getLessonBlocks().get(j));
+                for (LessonBlock lessonBlock : this.lessonBlocks) {
+                    if (lessonBlock != null) {
+                        if (lessonBlock.getGrade().getName().equals(grade.getName()) &&
+                                lessonBlock.getDay().equals(day)) {
+                            System.out.print("\n " + lessonBlock.getLessonNumber().getId());
+                            System.out.println(lessonBlock);
                         }
                     }
                 }
@@ -70,7 +70,7 @@ public class TimeTable {
                 }
             }
         }
-        return  daysInTimetable;
+        return daysInTimetable;
     }
 
     private List<Grade> gradesInTimetable(List<LessonBlock> lessonBlocks) {
@@ -93,7 +93,7 @@ public class TimeTable {
                 }
             }
         }
-        return  gradesInTimetable;
+        return gradesInTimetable;
     }
 
 }

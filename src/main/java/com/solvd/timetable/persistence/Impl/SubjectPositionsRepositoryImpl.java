@@ -18,4 +18,5 @@ public class SubjectPositionsRepositoryImpl implements SubjectPositionRepository
         }
         return subjectPositions;
     }
+
 }

@@ -18,4 +18,5 @@ public class TeacherWishesRepositoryImpl implements TeacherWishesRepository {
         }
         return teacherWishes;
     }
+
 }

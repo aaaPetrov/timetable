@@ -16,11 +16,9 @@ import com.solvd.timetable.service.impl.GradeServiceImpl;
 import com.solvd.timetable.service.impl.RoomServiceImpl;
 import com.solvd.timetable.service.impl.TeacherServiceImpl;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Algorithm {
 
@@ -55,7 +53,6 @@ public class Algorithm {
     public TimeTable createTimeTable() {
         List<List<Integer>> lessonsPerDay = setAmountOfLessonsPerDay(this.daysInWeek, this.gradeCurricula);
         TimeTable timeTable = new TimeTable(this.daysInWeek * this.maxLessonCount * this.gradesCount);
-
         again:
         while (true) {
             List<GradeCurriculum> gradeCurricula = cloneGradeCurricula(this.gradeCurricula);
